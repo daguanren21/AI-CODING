@@ -1,22 +1,42 @@
+﻿<script setup lang="ts">
+import SiteHeader from './components/SiteHeader.vue'
+</script>
+
 <template>
-  <main class="min-h-screen flex items-center justify-center bg-surface">
-    <el-card class="max-w-md w-full text-center space-y-4" shadow="hover">
-      <template #header>
-        <h1 class="text-xl font-semibold">Monorepo Starter</h1>
-      </template>
-      <p>Vue + Element Plus + UnoCSS + Vite + Vitest</p>
-      <el-button type="primary">It works!</el-button>
-    </el-card>
-  </main>
+  <div class="app-shell">
+    <SiteHeader />
+  </div>
 </template>
 
 <style scoped>
-:global(body) {
-  margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+.app-shell {
+  min-height: 100vh;
+  background: #f6f7fc;
+  color: #050506;
 }
 
-.bg-surface {
-  background-color: var(--el-bg-color-page);
+.content {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.info-card {
+  border: 1px solid rgba(5, 5, 6, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  background: #fff;
+}
+
+.info-card button {
+  margin-top: 12px;
+  background: var(--header-accent);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 </style>
