@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import {
   LocationFilled,
   Search,
-  Bell,
   StarFilled,
   ShoppingCart,
   UserFilled,
@@ -19,78 +18,100 @@ const quickActions = [
   { icon: StarFilled, label: '收藏' },
   { icon: ShoppingCart, label: '采购车' },
 ]
+const productOptions = ['Products', 'Suppliers', 'Categories']
 
 const searchValue = ref('')
+const selectedProduct = ref(productOptions[0])
 const userInfo = {
   name: 'Alice Zhang',
   id: '(ID:345879-0209)',
 }
+
+const onProductCommand = (command: string) => {
+  selectedProduct.value = command
+}
 </script>
 
 <template>
-  <header class="site-header" data-testid="site-header">
-    <div class="utility-bar">
-      <div class="utility-links">
-        <div class="utility-locale">
-          <LocationFilled class="icon" />
+  <header class="bg-header text-header flex flex-col gap-[8px] pt-[8px]" data-testid="site-header">
+    <div class="flex justify-end items-center px-[40px] h-[40px] text-[14px] text-header">
+      <div class="flex items-center gap-[8px]">
+        <div class="flex items-center gap-[6px]">
+          <LocationFilled class="w-[16px] h-[16px]" />
           <span>{{ utilityLinks[0] }}</span>
         </div>
-        <template v-for="(link, index) in utilityLinks.slice(1)" :key="link">
-          <span class="divider" aria-hidden="true" />
-          <span class="utility-text">{{ link }}</span>
+        <template v-for="link in utilityLinks.slice(1)" :key="link">
+          <span class="divider-line" aria-hidden="true" />
+          <span class="text-header">{{ link }}</span>
         </template>
       </div>
     </div>
 
-    <div class="main-bar">
-      <div class="brand" aria-label="company logo">
-        <div class="brand-mark">
-          <div class="brand-dot" />
+    <div class="flex flex-col gap-[16px] px-[24px] pb-[16px] md:px-[40px] lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex items-center gap-[10px]" aria-label="company logo">
+        <div class="w-[44px] h-[44px] rounded-full border-[2px] border-white flex items-center justify-center">
+          <div class="w-[16px] h-[16px] rounded-full bg-[var(--accent)]" />
         </div>
         <div>
-          <p class="brand-title">North Link</p>
-          <p class="brand-subtitle">TECHNOLOGY</p>
+          <p class="text-[16px] font-semibold leading-[22px] m-0">North Link</p>
+          <p class="text-[12px] tracking-[0.2em] text-header-muted m-0">TECHNOLOGY</p>
         </div>
       </div>
 
-      <nav class="nav" aria-label="main navigation">
-        <button v-for="item in navItems" :key="item" class="nav-link" type="button">
+      <nav class="flex flex-wrap gap-[16px] flex-1" aria-label="main navigation">
+        <button
+          v-for="item in navItems"
+          :key="item"
+          type="button"
+          class="flex items-center gap-[4px] bg-transparent border-none text-[16px] font-semibold text-header-muted hover:text-header transition-colors cursor-pointer"
+        >
           {{ item }}
-          <ArrowDown v-if="item === '更多' || item === '品类'" class="icon" />
+          <ArrowDown v-if="item === '更多' || item === '品类'" class="w-[16px] h-[16px]" />
         </button>
       </nav>
 
-      <div class="actions">
-        <div class="product-search" data-testid="product-search">
-          <button type="button" class="product-type">
-            <span>Products</span>
-            <ArrowDown class="icon" />
-          </button>
-          <input
-            v-model="searchValue"
-            placeholder="Shower doors"
-            aria-label="产品搜索"
-            class="search-input"
-          />
-          <button type="button" class="search-action" aria-label="执行搜索">
-            <Search class="icon" />
-          </button>
+      <div class="flex flex-wrap items-center gap-[12px] justify-end">
+        <div class="flex items-center gap-[8px] bg-[var(--pill-bg)] rounded-full px-[8px] py-[4px]" data-testid="product-search">
+          <ElDropdown class="product-selector inline-flex h-[32px] items-stretch" trigger="click" @command="onProductCommand">
+            <span
+              class="pill-highlight px-[16px] inline-flex items-center gap-[4px] cursor-pointer select-none h-full"
+              role="button"
+              tabindex="0"
+            >
+              {{ selectedProduct }}
+              <ArrowDown class="w-[16px] h-[16px]" />
+            </span>
+            <template #dropdown>
+              <ElDropdownMenu>
+                <ElDropdownItem v-for="option in productOptions" :key="option" :command="option">
+                  {{ option }}
+                </ElDropdownItem>
+              </ElDropdownMenu>
+            </template>
+          </ElDropdown>
+          <ElInput v-model="searchValue" placeholder="Shower doors" class="search-input flex-1 min-w-[140px]" />
+          <ElButton class="search-action" :icon="Search" circle aria-label="执行搜索" text />
         </div>
-        <button type="button" class="advanced-filter" data-testid="advanced-filter">
-          <Filter class="icon" />
-          <span>高级筛选</span>
-        </button>
-        <div class="user-card" aria-label="当前用户">
-          <UserFilled class="icon" />
-          <div>
-            <p class="user-name">{{ userInfo.name }}</p>
-            <p class="user-id">{{ userInfo.id }}</p>
+        <ElButton class="pill-base px-[16px] py-[4px] inline-flex items-center gap-[4px] text-[14px]" round plain :icon="Filter">
+          高级筛选
+        </ElButton>
+        <div class="flex items-center gap-[8px] px-[12px] py-[4px] border border-white/20 rounded-[12px]" aria-label="当前用户">
+          <UserFilled class="w-[16px] h-[16px]" />
+          <div class="text-[14px] leading-[20px]">
+            <p class="m-0">{{ userInfo.name }}</p>
+            <p class="m-0 text-[12px] text-header-muted">{{ userInfo.id }}</p>
           </div>
         </div>
-        <div class="quick">
-          <button v-for="action in quickActions" :key="action.label" type="button" class="quick-button">
-            <component :is="action.icon" class="icon" />
-          </button>
+        <div class="flex gap-[8px]">
+          <ElButton
+            v-for="action in quickActions"
+            :key="action.label"
+            class="action-icon"
+            circle
+            :icon="action.icon"
+            text
+            :aria-label="action.label"
+          />
         </div>
       </div>
     </div>
@@ -98,220 +119,68 @@ const userInfo = {
 </template>
 
 <style scoped>
-.site-header {
-  background: var(--header-bg);
-  color: var(--header-text);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 8px;
+.search-input :deep(.el-input__wrapper) {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 
-.utility-bar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 40px;
-  height: 40px;
-  font-size: 14px;
+.search-input :deep(.el-input__inner) {
   color: var(--header-text);
 }
 
-.utility-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.utility-locale,
-.utility-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--header-text);
-}
-
-.divider {
-  width: 1px;
-  height: 14px;
-  background: var(--header-divider);
-  display: inline-block;
-}
-
-.main-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px 16px;
-  gap: 32px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand-mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid var(--header-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-dot {
-  width: 16px;
-  height: 16px;
-  background: var(--header-accent);
-  border-radius: 50%;
-}
-
-.brand-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.brand-subtitle {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.2em;
+.search-input :deep(.el-input__inner::placeholder) {
   color: var(--header-text-secondary);
 }
 
-.nav {
-  display: flex;
-  gap: 16px;
-  flex: 1;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: transparent;
+.search-action :deep(.el-button) {
   border: none;
-  color: var(--header-text-secondary);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.nav-link:hover {
+  background: var(--pill-highlight);
   color: var(--header-text);
+  width: 32px;
+  height: 32px;
+  padding: 0;
 }
-
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.product-search {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 4px;
-  gap: 8px;
-}
-
-.product-type {
+.product-selector {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  color: var(--header-text);
-  padding: 4px 12px;
-  font-size: 14px;
-  cursor: pointer;
+  height: 32px;
 }
 
-.search-input {
-  flex: 1;
-  min-width: 120px;
-  background: transparent;
-  border: none;
-  color: var(--header-text);
-  font-size: 14px;
-}
-
-.search-input::placeholder {
-  color: var(--header-text-secondary);
-}
-
-.search-action {
-  border: none;
-  background: transparent;
-  color: var(--header-text);
-  padding: 4px 8px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.advanced-filter {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  color: var(--header-text);
-  padding: 4px 16px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.quick {
+.product-selector :deep(.el-tooltip__trigger) {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  height: 100%;
 }
 
-.quick-button {
+
+
+
+.pill-base :deep(.el-button) {
+  background: transparent;
+  color: var(--header-text);
+  border: none;
+  padding: 0;
+}
+
+.pill-base :deep(.el-button):hover,
+.pill-base :deep(.el-button):focus {
+  background: transparent;
+  color: var(--header-text);
+  border: none;
+}
+
+.action-icon :deep(.el-icon) {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+}
+
+.action-icon :deep(.el-icon):hover,
+.action-icon :deep(.el-icon):focus {
+  color: #333;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--header-text);
-}
-
-.user-card {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-}
-
-.user-name {
-  margin: 0;
-  font-size: 14px;
-}
-
-.user-id {
-  margin: 0;
-  font-size: 12px;
-  color: var(--header-text-secondary);
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-}
-
-@media (max-width: 1280px) {
-  .nav {
-    flex-wrap: wrap;
-  }
 }
 </style>

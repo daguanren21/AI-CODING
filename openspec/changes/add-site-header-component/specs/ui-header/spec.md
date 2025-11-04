@@ -50,3 +50,11 @@ Where Figma elements match available Element Plus widgets, the implementation SH
 - **WHEN** building header pills, inputs, or buttons that align with an Element Plus component
 - **THEN** the component should be rendered via Element Plus (e.g., `ElInput`, `ElButton`)
 - **AND** if matching the design would require large custom overrides, a bespoke implementation may be used instead.
+
+### Requirement: Prefer UnoCSS Utilities
+UnoCSS atomic classes SHOULD be the default styling mechanism; scoped CSS is only allowed when a layout requires verbose utilities or complex overrides, and repeated atomic combinations MUST be extracted into shortcuts.
+
+#### Scenario: Styling Strategy
+- **WHEN** applying colors, spacing, or layout to header elements
+- **THEN** use UnoCSS classes (or declared shortcuts) instead of custom CSS
+- **AND** only fall back to scoped styles when the Uno expression would be excessively long or needs Element Plus overrides.
