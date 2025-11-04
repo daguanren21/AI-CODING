@@ -1,0 +1,31 @@
+{
+  "name": "@custom/web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "^2.11.7",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@unocss/vite": "^66.5.4",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/coverage-v8": "^4.0.6",
+    "@vue/tsconfig": "^0.8.1",
+    "jsdom": "^27.1.0",
+    "typescript": "~5.9.3",
+    "unocss": "^66.5.4",
+    "vite": "^7.1.7",
+    "vitest": "^4.0.6",
+    "vue-tsc": "^3.1.0"
+  }
+}

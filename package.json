@@ -1,0 +1,16 @@
+{
+  "name": "custom-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.20.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "dev:web": "pnpm --filter apps/web dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.6.0"
+  }
+}
