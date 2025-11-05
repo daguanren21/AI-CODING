@@ -16,7 +16,7 @@ const navItems = ['首页', '新品速递', '即将到货', '限时促销', '更
 const quickActions = [
   { icon: ChatLineSquare, label: '消息' },
   { icon: StarFilled, label: '收藏' },
-  { icon: ShoppingCart, label: '采购车' },
+  { icon: ShoppingCart, label: '采购单' },
 ]
 const productOptions = ['Products', 'Suppliers', 'Categories']
 
@@ -73,11 +73,7 @@ const onProductCommand = (command: string) => {
       <div class="flex flex-wrap items-center gap-[12px] justify-end">
         <div class="flex items-center gap-[8px] bg-[var(--pill-bg)] rounded-full px-[8px] py-[4px]" data-testid="product-search">
           <ElDropdown class="product-selector inline-flex h-[32px] items-stretch" trigger="click" @command="onProductCommand">
-            <span
-              class="pill-highlight px-[16px] inline-flex items-center gap-[4px] cursor-pointer select-none h-full"
-              role="button"
-              tabindex="0"
-            >
+            <span class="pill-highlight px-[16px] inline-flex items-center gap-[4px] cursor-pointer select-none h-full" role="button" tabindex="0">
               {{ selectedProduct }}
               <ArrowDown class="w-[16px] h-[16px]" />
             </span>
@@ -141,6 +137,7 @@ const onProductCommand = (command: string) => {
   height: 32px;
   padding: 0;
 }
+
 .product-selector {
   display: inline-flex;
   height: 32px;
@@ -151,9 +148,6 @@ const onProductCommand = (command: string) => {
   align-items: center;
   height: 100%;
 }
-
-
-
 
 .pill-base :deep(.el-button) {
   background: transparent;

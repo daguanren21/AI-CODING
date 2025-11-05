@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ElementPlus from 'element-plus'
 import App from './App.vue'
@@ -12,7 +12,8 @@ describe('App', () => {
   it('exposes theme tokens aligned with Figma', () => {
     expect(themeColors.headerBg).toBe('#050506')
     expect(themeColors.headerTextSecondary).toBe('#CBCBCB')
-    expect(themeColors.pageBg).toBe('#050506')
+    expect(themeColors.pageBg).toBe('#F6F7FC')
+    expect(themeColors.inputBg).toBe('#F4F5F7')
   })
 
   it('renders the SiteHeader component', () => {
@@ -24,3 +25,4 @@ describe('App', () => {
     expect(wrapper.find('[data-testid="site-header"]').exists()).toBe(true)
   })
 })
+

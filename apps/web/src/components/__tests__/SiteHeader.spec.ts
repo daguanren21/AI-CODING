@@ -18,7 +18,7 @@ const setup = () =>
 
 const utilityTexts = ['帮助中心', 'Buyer 中心', '消息中心(99+)', '退出']
 const navLabels = ['首页', '新品速递', '即将到货', '限时促销', '更多', '品类']
-const quickLabels = ['消息', '收藏', '采购车']
+const quickLabels = ['消息', '收藏', '采购单']
 
 describe('SiteHeader', () => {
   it('renders navigation, utility links, and new pills', async () => {
