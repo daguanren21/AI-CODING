@@ -28,11 +28,11 @@ The header MUST display the "高级筛选" capsule (Figma node 766:83220) on the
 - **AND** the pill aligns with other action pills on the right-hand side.
 
 ### Requirement: Product Search Capsule
-The header MUST implement the product search capsule from Figma node 766:83207, including the “Products” dropdown pill, placeholder text, and search icon button.
+The header MUST implement the product search capsule from Figma node 766:83207, including the "Products" dropdown pill, placeholder text, and search icon button.
 
 #### Scenario: Product Search Layout
 - **WHEN** the search area is rendered
-- **THEN** it contains a sub-pill labeled "Products" with a down arrow, placeholder text “Shower doors”, and a search icon button on the right
+- **THEN** it contains a sub-pill labeled "Products" with a down arrow, placeholder text "Shower doors" and a search icon button on the right
 - **AND** the entire capsule maintains the translucent white background and rounded-full shape.
 
 ### Requirement: Complete Test Coverage
