@@ -1,4 +1,4 @@
-﻿# Project Context
+# Project Context
 
 ## Purpose
 Monorepo starter focused on modern Vue 3 frontends. The current goal is to keep a minimal yet production-ready scaffold (Vite + Element Plus + UnoCSS + Vitest) that future features can build upon without redoing boilerplate or tooling.
@@ -26,6 +26,7 @@ Monorepo starter focused on modern Vue 3 frontends. The current goal is to keep 
 - Element Plus is the default UI library. If a Figma element can be implemented with an existing Element Plus component without heavy overrides, we must prefer the Element Plus component (for example `ElButton`, `ElInput`, `ElDropdown`).
 - If recreating the design would require extensive custom styling, a bespoke implementation is allowed, but the PR/spec must explain why.
 - UnoCSS atomic classes are the default styling approach. When utilities become repetitive or overly long, create shortcuts in `uno.config.ts`; only fall back to scoped CSS when overriding Element Plus or building complex layouts.
+- Before touching any visual implementation, **you must** fetch the referenced node(s) via Figma MCP using the link provided in the task/spec. The fetched data (layout, typography, spacing, assets) is the single source of truth, and the UI must be implemented 1:1 with those values. Do not rely on memory or screenshots—always re-verify through MCP each time the design is referenced.
 
 ### Testing Strategy
 - Vitest is required for unit/component tests; run via `pnpm test` (Turbo) or `pnpm --filter @custom/web test`.
@@ -58,3 +59,4 @@ Currently a generic web-app starter. Expect future work to revolve around dashbo
 ## External Dependencies
 - GitHub repository: `https://github.com/daguanren21/AI-CODING.git` (main branch).
 - Element Plus CDN/assets, UnoCSS presets, and npm registry packages; ensure those sources remain reachable.
+

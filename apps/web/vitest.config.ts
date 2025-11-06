@@ -10,7 +10,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov'],
       include: ['src/**/*.{ts,tsx,vue}'],
-      exclude: ['src/main.ts'],
+      exclude: ['src/main.ts', 'src/**/*.d.ts'],
       lines: 1,
       functions: 1,
       branches: 1,

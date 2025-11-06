@@ -20,6 +20,9 @@ importers:
       element-plus:
         specifier: ^2.11.7
         version: 2.11.7(vue@3.5.22(typescript@5.9.3))
+      swiper:
+        specifier: ^11.1.5
+        version: 11.1.5
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
@@ -1572,6 +1575,10 @@ packages:
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
+
+  swiper@11.1.5:
+    resolution: {integrity: sha512-JJQWFXdxiMGC2j6ZGTYat5Z7NN9JORJBgHp0/joX9uPod+cRj0wr5H5VnWSNIz9JeAamQvYKaG7aFrGHIF9OEg==}
+    engines: {node: '>= 4.7.0'}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -3460,6 +3467,8 @@ snapshots:
   supports-color@7.2.0:
     dependencies:
       has-flag: 4.0.0
+
+  swiper@11.1.5: {}
 
   symbol-tree@3.2.4: {}
 
