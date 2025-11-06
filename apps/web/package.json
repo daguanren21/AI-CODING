@@ -13,7 +13,8 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
     "element-plus": "^2.11.7",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "swiper": "^11.1.5"
   },
   "devDependencies": {
     "@types/node": "^24.6.0",

@@ -25,6 +25,28 @@ const unoThemeColors = {
   'manager-card-bg': themeColors.managerCardBg,
   'manager-card-title-bg': themeColors.managerCardTitleBg,
   'manager-card-title-text': themeColors.managerCardTitleText,
+  'todo-heading': themeColors.todoHeadingText,
+  'todo-subheading': themeColors.todoSubheadingText,
+  'todo-text': themeColors.todoText,
+  'todo-muted': themeColors.todoMuted,
+  'todo-icon': themeColors.todoIconBg,
+  'todo-card-start': themeColors.todoCardGradientStart,
+  'todo-card-end': themeColors.todoCardGradientEnd,
+  'todo-card-border-active': themeColors.todoCardBorderActive,
+  'todo-card-shadow': themeColors.todoCardShadow,
+  'todo-panel-start': themeColors.todoPanelGradientStart,
+  'todo-panel-end': themeColors.todoPanelGradientEnd,
+  'todo-panel-border': themeColors.todoPanelBorder,
+  'todo-panel-shadow': themeColors.todoPanelShadow,
+  'todo-due-item-bg': themeColors.todoDueItemBg,
+  'todo-due-item-border': themeColors.todoDueItemBorder,
+  'todo-due-item-meta': themeColors.todoDueItemMeta,
+  'todo-countdown-critical-bg': themeColors.todoCountdownCriticalBg,
+  'todo-countdown-critical-text': themeColors.todoCountdownCriticalText,
+  'todo-countdown-warning-bg': themeColors.todoCountdownWarningBg,
+  'todo-countdown-warning-text': themeColors.todoCountdownWarningText,
+  'todo-indicator-active': themeColors.todoIndicatorActive,
+  'todo-indicator-inactive': themeColors.todoIndicatorInactive,
 }
 
 const rootVars = `
@@ -55,6 +77,28 @@ const rootVars = `
   --manager-card-title-text: ${themeColors.managerCardTitleText};
   --manager-card-shadow: ${themeColors.managerCardShadow};
   --manager-border: ${themeColors.managerBorder};
+  --todo-heading: ${themeColors.todoHeadingText};
+  --todo-subheading: ${themeColors.todoSubheadingText};
+  --todo-text: ${themeColors.todoText};
+  --todo-muted: ${themeColors.todoMuted};
+  --todo-icon-bg: ${themeColors.todoIconBg};
+  --todo-card-start: ${themeColors.todoCardGradientStart};
+  --todo-card-end: ${themeColors.todoCardGradientEnd};
+  --todo-card-shadow: ${themeColors.todoCardShadow};
+  --todo-card-border-active: ${themeColors.todoCardBorderActive};
+  --todo-panel-start: ${themeColors.todoPanelGradientStart};
+  --todo-panel-end: ${themeColors.todoPanelGradientEnd};
+  --todo-panel-border: ${themeColors.todoPanelBorder};
+  --todo-panel-shadow: ${themeColors.todoPanelShadow};
+ --todo-due-item-bg: ${themeColors.todoDueItemBg};
+  --todo-due-item-border: ${themeColors.todoDueItemBorder};
+  --todo-due-item-meta: ${themeColors.todoDueItemMeta};
+  --todo-countdown-critical-bg: ${themeColors.todoCountdownCriticalBg};
+  --todo-countdown-critical-text: ${themeColors.todoCountdownCriticalText};
+  --todo-countdown-warning-bg: ${themeColors.todoCountdownWarningBg};
+  --todo-countdown-warning-text: ${themeColors.todoCountdownWarningText};
+  --todo-indicator-active: ${themeColors.todoIndicatorActive};
+  --todo-indicator-inactive: ${themeColors.todoIndicatorInactive};
 }
 `
 
@@ -68,6 +112,7 @@ export default defineConfig({
     ['bg-header', 'bg-[var(--header-bg)]'],
     ['text-header', 'text-[var(--header-text)]'],
     ['text-header-muted', 'text-[var(--header-text-secondary)]'],
+    ["todo-yahei", "font-['Microsoft_YaHei','PingFang_SC','HarmonyOS_Sans','Source_Han_Sans_SC','Segoe_UI',sans-serif]"],
     ['pill-base', 'rounded-full bg-[var(--pill-bg)] text-[var(--header-text)]'],
     ['pill-highlight', 'rounded-full bg-[var(--pill-highlight)] text-[var(--header-text)]'],
     ['action-icon', 'w-[36px] h-[36px] flex items-center justify-center border border-white/20 rounded-full text-white'],
@@ -91,6 +136,49 @@ export default defineConfig({
     ['metric-unit', 'text-[14px] text-[var(--metric-accent)]'],
     ['manager-trigger', 'metric-link gap-[6px] text-[var(--manager-text)]'],
     ['level-pill', 'inline-flex items-center gap-[4px] rounded-full bg-white/10 px-[10px] py-[2px] text-[12px] uppercase tracking-[0.12em]'],
+    [
+      'todo-overview-shell',
+      'flex h-[256px] w-full flex-shrink-0 items-center gap-[16px] rounded-[20px] border-[2px] border-[#ffffff] bg-[linear-gradient(180deg,#E6EDFF_-9.01%,#FFFFFF_100%)] px-[24px] py-[24px]',
+    ],
+    ['todo-overview-grid', 'flex h-full flex-1 flex-col gap-[24px]'],
+    ['todo-overview-right', 'flex h-full flex-[0_1_320px] max-w-[320px] flex-col'],
+    ['todo-overview-heading', 'flex flex-col gap-[6px]'],
+    ['todo-heading', 'text-[18px] font-bold leading-[24px] text-[var(--todo-heading)]'],
+    ['todo-subheading', 'text-[14px] font-normal leading-[18px] tracking-[1.12px] text-[var(--todo-subheading)]'],
+    ['todo-card-grid', 'grid h-full grid-cols-5 gap-x-[16px] gap-y-[12px]'],
+    [
+      'todo-card',
+      'relative flex h-[70px] w-[242.4px] items-center gap-[12px] overflow-hidden rounded-[8px] bg-transparent px-[12px] py-[12px] text-[var(--todo-heading)] transition-shadow',
+    ],
+    [
+      'todo-card-hover',
+      'hover:shadow-[0_2px_10px_rgba(22,54,152,0.1)] focus-visible:ring-2 focus-visible:ring-[var(--todo-card-border-active)]',
+    ],
+    [
+      'todo-card-overlay',
+      'pointer-events-none absolute inset-0 z-[0] rounded-[8px] bg-[linear-gradient(0deg,#FFFFFF_-6.5%,#EFF3FF_120.78%)] opacity-0 transition-opacity',
+    ],
+    ['todo-card-overlay--hover', 'group-hover:opacity-100'],
+    ['todo-card-title', 'm-0 text-[14px] font-normal leading-[18px] text-[var(--todo-heading)]'],
+    ['todo-card-number', 'text-[24px] font-bold leading-[24px] text-[var(--todo-heading)]'],
+    ['todo-icon-box', 'relative h-[40px] w-[34.783px] flex-shrink-0'],
+    [
+      'todo-due-panel',
+      'box-border flex h-[216px] w-full max-w-[320px] flex-col gap-[12px] rounded-[20px] border border-white/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.5)_0%,rgba(255,255,255,0)_110.73%)] px-[24px] py-[16px] text-[var(--todo-heading)] shadow-[0_18px_38px_rgba(88,108,137,0.18)]',
+    ],
+    ['todo-due-header', 'flex items-center justify-between gap-[12px]'],
+    ['todo-due-icon', 'flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[12px] bg-[rgba(86,106,255,0.12)]'],
+    ['todo-due-swiper', 'flex h-full w-full flex-col justify-between'],
+    ['todo-view-all', 'inline-flex items-center gap-[4px] rounded-full border border-transparent bg-transparent px-[8px] py-[4px] text-[14px] font-normal text-[var(--todo-heading)] hover:underline'],
+    ['todo-due-item', 'flex w-full items-center justify-between gap-[12px] rounded-none border-none bg-transparent px-0 py-0 text-[var(--todo-heading)]'],
+    ['todo-due-title', 'text-[14px] font-normal leading-[22px] text-[var(--todo-heading)] no-underline hover:underline'],
+    ['todo-meta', 'text-[12px] font-normal leading-[18px] text-[#666666]'],
+    ['todo-due-countdown', 'inline-flex h-[20px] min-w-[86px] items-center justify-center rounded-[8px] px-[8px] text-[12px] font-normal leading-[16px]'],
+    ['todo-countdown--critical', 'bg-[#E64545] text-white'],
+    ['todo-countdown--warning', 'bg-[#FFF0E6] text-[#FF6600]'],
+    ['todo-indicator', 'h-[3px] w-[16px] rounded-[100px] bg-[var(--todo-indicator-inactive)] transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--todo-indicator-active)]'],
+    ['todo-indicator--active', 'bg-[var(--todo-indicator-active)]'],
+    ['todo-count-tag', 'flex h-[20px] min-w-[20px] items-center justify-center rounded-[4px] bg-[#FFF0E6] px-[6px] text-[12px] font-normal leading-[18px] text-[#FF6600]'],
   ],
   preflights: [
     {
@@ -100,9 +188,13 @@ export default defineConfig({
       getCSS: () => `
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'HarmonyOS Sans', 'Source Han Sans SC', 'Segoe UI', sans-serif;
   background-color: var(--page-bg);
   color: var(--header-text);
+}
+
+a {
+  color: inherit;
 }
 
 .manager-popover {

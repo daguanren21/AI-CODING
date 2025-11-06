@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/base-info/BaseInfoSection.vue</title>
+    <title>Code coverage report for src/components/todo-overview/DueSoonItem.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/base-info</a> BaseInfoSection.vue</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/todo-overview</a> DueSoonItem.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -85,40 +85,20 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,36 +108,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿&lt;script setup lang="ts"&gt;
-import BaseInfoMetricCard from './BaseInfoMetricCard.vue'
-import BaseInfoManagerCard from './BaseInfoManagerCard.vue'
-import { baseInfoState } from './baseInfoData'
+import { computed } from "vue"
+import type { IToDoListModuleItem } from "./types"
 &nbsp;
-const state = baseInfoState.value
+const props = defineProps&lt;{ item: IToDoListModuleItem }&gt;()
+&nbsp;
+const countdownClass = computed(() =&gt;
+  props.item.tag.tone === "critical" ? "todo-countdown--critical" : "todo-countdown--warning",
+)
 &lt;/script&gt;
 &nbsp;
 &lt;template&gt;
-  &lt;section class="base-info-surface w-full" data-testid="base-info-section"&gt;
-    &lt;div class="summary-grid flex-col"&gt;
-      &lt;div class="flex items-center gap-[12px]"&gt;
-        &lt;p class="m-0 text-[24px] font-semibold text-[var(--base-info-text)]"&gt;
-          {{ state.user.greeting }}
-        &lt;/p&gt;
-        &lt;span class="level-pill"&gt;{{ state.user.level }}&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class="summary-right"&gt;
-        &lt;div class="id-chip" data-testid="base-info-id"&gt;
-          &lt;span class="id-badge"&gt;ID&lt;/span&gt;
-          &lt;span class="text-[var(--base-info-text)]"&gt;{{ state.user.id }}&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;span class="info-divider" aria-hidden="true" /&gt;
-        &lt;BaseInfoMetricCard :card="state.gigaIndex" /&gt;
-        &lt;span class="info-divider" aria-hidden="true" /&gt;
-        &lt;BaseInfoMetricCard :card="state.beans" /&gt;
-        &lt;span class="info-divider" aria-hidden="true" /&gt;
-        &lt;BaseInfoManagerCard :manager="state.manager" /&gt;
-      &lt;/div&gt;
+  &lt;div class="todo-due-item" data-testid="todo-due-item"&gt;
+    &lt;div class="flex flex-1 flex-col gap-[4px]"&gt;
+      &lt;a :href="item.url" class="todo-due-title transition" target="_blank" rel="noreferrer"&gt;
+        {{ item.title }}
+      &lt;/a&gt;
+      &lt;p v-if="item.meta" class="todo-meta m-0"&gt;{{ item.meta }}&lt;/p&gt;
     &lt;/div&gt;
-  &lt;/section&gt;
+    &lt;span class="todo-due-countdown" :class="countdownClass"&gt;{{ item.countdownDesc }}&lt;/span&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;</pre></td></tr></table></pre>
 
