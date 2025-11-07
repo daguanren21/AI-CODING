@@ -35,6 +35,12 @@
 - 新增 UI 组件至少提供一个 Vitest 组件测试（例如渲染快照或关键交互）。
 - 若出现 Swiper、Element Plus 等第三方交互导致的警告，需在测试桩中显式声明事件或 props，确保日志干净。
 
+## Mock 数据（开发态）
+- 通过 **MSW.js** 在 `src/mocks/handlers.ts` 中模拟 `/api/base-info`、`/api/todo-overview`，仅在 `import.meta.env.DEV` 时注册 Service Worker。
+- 构建/生产环境不会引入 mock（`main.ts` 动态导入，DEV 以外直接跳过）。
+- Pinia store（`useBaseInfoStore`、`useTodoOverviewStore`）通过 Axios 请求 API，再由 MSW 返回示例数据；如需对接真实后端，只需替换接口地址。
+- 端到端校验可使用 Playwright MCP 或 Chrome DevTools MCP：先运行 `pnpm --filter @custom/web dev`，随后在 MCP 中执行 DOM/截图断言，确保 baseInfo 与待办总览都来自 mock API。
+
 ## TypeScript 与目录约定
 - `apps/web/tsconfig.app.json` 必须继承 `./node_modules/@vue/tsconfig/tsconfig.dom.json`。
 - 组件使用 `<script setup>` + Composition API，文件命名保持 kebab-case，组件名使用 PascalCase。

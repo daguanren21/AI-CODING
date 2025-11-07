@@ -1,9 +1,19 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import TodoCardGrid from "./TodoCardGrid.vue"
 import DueSoonPanel from "./DueSoonPanel.vue"
-import { todoOverviewState } from "./todoOverviewData"
+import { useTodoOverviewStore } from "../../stores/todoOverviewStore"
 
-const state = todoOverviewState.value
+const todoOverviewStore = useTodoOverviewStore()
+
+onMounted(() => {
+  if (!todoOverviewStore.hasLoaded) {
+    todoOverviewStore.loadTodoOverview()
+  }
+})
+
+const cards = computed(() => todoOverviewStore.cards)
+const dueSoonModule = computed(() => todoOverviewStore.dueSoon)
 </script>
 
 <template>
@@ -14,11 +24,14 @@ const state = todoOverviewState.value
         <p class="todo-subheading m-0">以下为近期待处理事项，请尽快处理避免造成损失</p>
       </header>
       <div class="flex-1 overflow-hidden">
-        <TodoCardGrid :cards="state.cards" class="todo-card-grid" />
+        <TodoCardGrid :cards="cards" class="todo-card-grid" />
       </div>
     </div>
     <div class="todo-overview-right">
-      <DueSoonPanel :module="state.dueSoon" class="h-full" />
+      <DueSoonPanel :module="dueSoonModule" class="h-full" />
     </div>
+    <p v-if="todoOverviewStore.error" class="mt-[12px] text-[14px] text-red-500">
+      {{ todoOverviewStore.error }}
+    </p>
   </section>
 </template>
