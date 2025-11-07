@@ -1,8 +1,9 @@
-﻿import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { h } from 'vue'
 import { mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import TodoOverview from '../TodoOverview.vue'
-import { todoOverviewState } from '../todoOverviewData'
+import { useTodoOverviewStore } from '../../../stores/todoOverviewStore'
 
 vi.mock('swiper/vue', () => {
   const createStub = (name: string) => ({
@@ -38,29 +39,12 @@ beforeAll(() => {
   global.ResizeObserver = MockResizeObserver
 })
 
-const snapshot = () => ({
-  cards: [...todoOverviewState.value.cards],
-  dueSoon: {
-    ...todoOverviewState.value.dueSoon,
-    items: [...todoOverviewState.value.dueSoon.items],
-  },
-})
-
-let stateBackup = snapshot()
-
-const resetState = () => {
-  todoOverviewState.value = {
-    cards: [...stateBackup.cards],
-    dueSoon: {
-      ...stateBackup.dueSoon,
-      items: [...stateBackup.dueSoon.items],
-    },
-  }
-}
-
 const mountComponent = () => {
   const wrapper = mount(TodoOverview, {
     attachTo: document.body,
+    global: {
+      plugins: [createPinia()],
+    },
   })
   cleanup.push(() => wrapper.unmount())
   return wrapper
@@ -69,7 +53,6 @@ const mountComponent = () => {
 afterEach(() => {
   cleanup.forEach((dispose) => dispose())
   cleanup = []
-  resetState()
 })
 
 describe('TodoOverview', () => {
@@ -95,9 +78,18 @@ describe('TodoOverview', () => {
   })
 
   it('hides view-all link when total is within current slide', async () => {
-    todoOverviewState.value.dueSoon.total = todoOverviewState.value.dueSoon.items.length
     const wrapper = mountComponent()
+    const store = useTodoOverviewStore()
+    store.dueSoon.total = store.dueSoon.items.length
+    await wrapper.vm.$nextTick()
     expect(wrapper.find('.todo-view-all').exists()).toBe(false)
   })
-})
 
+  it('renders error message when todo store reports a failure', async () => {
+    const wrapper = mountComponent()
+    const store = useTodoOverviewStore()
+    store.error = '加载待办数据失败'
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('加载待办数据失败')
+  })
+})

@@ -1,9 +1,18 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import BaseInfoMetricCard from './BaseInfoMetricCard.vue'
 import BaseInfoManagerCard from './BaseInfoManagerCard.vue'
-import { baseInfoState } from './baseInfoData'
+import { useBaseInfoStore } from '../../stores/baseInfoStore'
 
-const state = baseInfoState.value
+const baseInfoStore = useBaseInfoStore()
+
+onMounted(() => {
+  if (!baseInfoStore.hasLoaded) {
+    baseInfoStore.loadBaseInfo()
+  }
+})
+
+const state = computed(() => baseInfoStore.baseInfo)
 </script>
 
 <template>
@@ -28,5 +37,8 @@ const state = baseInfoState.value
         <BaseInfoManagerCard :manager="state.manager" />
       </div>
     </div>
+    <p v-if="baseInfoStore.error" class="mt-[8px] text-[14px] text-red-500">
+      {{ baseInfoStore.error }}
+    </p>
   </section>
 </template>

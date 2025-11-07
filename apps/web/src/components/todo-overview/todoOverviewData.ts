@@ -1,4 +1,3 @@
-﻿import { ref } from "vue"
 import type { ITodoCard, IToDoListModule } from "./types"
 
 import iconFullBid from "../../assets/todo-icons/full-bid.svg?url"
@@ -12,7 +11,7 @@ import iconService from "../../assets/todo-icons/service.svg?url"
 import iconLogistics from "../../assets/todo-icons/logistics-claim.svg?url"
 import iconReturn from "../../assets/todo-icons/return.svg?url"
 
-const todoCards: ITodoCard[] = [
+export const mockTodoCards: ITodoCard[] = [
   { num: 100, title: "全款 BID 待支付", icon: iconFullBid },
   { num: 100, title: "产品返点协议履约中", icon: iconProductRebate },
   { num: 100, title: "店铺返点协议履约中", icon: iconStoreRebate },
@@ -25,7 +24,7 @@ const todoCards: ITodoCard[] = [
   { num: 100, title: "退返品待跟进", icon: iconReturn },
 ]
 
-const dueSoonModule: IToDoListModule = {
+export const mockDueSoonModule: IToDoListModule = {
   title: "近七天到期",
   total: 20,
   icon: iconDelivery,
@@ -72,9 +71,4 @@ const dueSoonModule: IToDoListModule = {
     },
   ],
 }
-
-export const todoOverviewState = ref({
-  cards: todoCards,
-  dueSoon: dueSoonModule,
-})
 
