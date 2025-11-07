@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -87,12 +87,35 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,12 +134,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿&lt;script setup lang="ts"&gt;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script setup lang="ts"&gt;
+import { computed, onMounted } from 'vue'
 import TodoCardGrid from "./TodoCardGrid.vue"
 import DueSoonPanel from "./DueSoonPanel.vue"
-import { todoOverviewState } from "./todoOverviewData"
+import { useTodoOverviewStore } from "../../stores/todoOverviewStore"
 &nbsp;
-const state = todoOverviewState.value
+const todoOverviewStore = useTodoOverviewStore()
+&nbsp;
+onMounted(() =&gt; {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!todoOverviewStore.hasLoaded) {
+    todoOverviewStore.loadTodoOverview()
+  }
+})
+&nbsp;
+const cards = computed(() =&gt; todoOverviewStore.cards)
+const dueSoonModule = computed(() =&gt; todoOverviewStore.dueSoon)
 &lt;/script&gt;
 &nbsp;
 &lt;template&gt;
@@ -127,12 +163,15 @@ const state = todoOverviewState.value
         &lt;p class="todo-subheading m-0"&gt;以下为近期待处理事项，请尽快处理避免造成损失&lt;/p&gt;
       &lt;/header&gt;
       &lt;div class="flex-1 overflow-hidden"&gt;
-        &lt;TodoCardGrid :cards="state.cards" class="todo-card-grid" /&gt;
+        &lt;TodoCardGrid :cards="cards" class="todo-card-grid" /&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class="todo-overview-right"&gt;
-      &lt;DueSoonPanel :module="state.dueSoon" class="h-full" /&gt;
+      &lt;DueSoonPanel :module="dueSoonModule" class="h-full" /&gt;
     &lt;/div&gt;
+    &lt;p v-if="todoOverviewStore.error" class="mt-[12px] text-[14px] text-red-500"&gt;
+      {{ todoOverviewStore.error }}
+    &lt;/p&gt;
   &lt;/section&gt;
 &lt;/template&gt;
 &nbsp;</pre></td></tr></table></pre>
@@ -142,7 +181,7 @@ const state = todoOverviewState.value
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-06T08:58:51.556Z
+                at 2025-11-07T07:22:54.289Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
