@@ -1,8 +1,10 @@
-﻿<script setup lang="ts">
-import TodoCard from "./TodoCard.vue"
-import type { ITodoCard } from "./types"
+<script setup lang="ts">
+import { toRef } from 'vue'
+import TodoCard from './TodoCard.vue'
+import type { ITodoCard } from './types'
 
 const props = defineProps<{ cards: ITodoCard[] }>()
+const cards = toRef(props, 'cards')
 </script>
 
 <template>

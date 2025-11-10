@@ -25,7 +25,7 @@ export interface ManagerInfo {
 
 export interface BaseInfoState {
   user: UserProfile
-  gigaIndex: MetricCardData
+  customIndex: MetricCardData
   beans: MetricCardData
   manager: ManagerInfo
 }

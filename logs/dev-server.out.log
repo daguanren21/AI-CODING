@@ -1,0 +1,11 @@
+
+> @custom/web@0.0.0 dev:buyer-center D:\demo code\ai-coding\apps\web
+> vite --host 192.168.16.141 --port 5173
+
+
+  [32m[1mVITE[22m v7.1.12[39m  [2mready in [0m[1m939[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.16.141:[1m5173[22m/[39m
+D:\demo code\ai-coding\apps\web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @custom/web@0.0.0 dev:buyer-center: `vite --host 192.168.16.141 --port 5173`
+Exit status 3221225786

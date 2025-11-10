@@ -18,7 +18,7 @@ const unoThemeColors = {
   'base-info-end': themeColors.baseInfoGradientEnd,
   'base-info-text': themeColors.baseInfoTextPrimary,
   'base-info-muted': themeColors.baseInfoTextMuted,
-  'giga-accent': themeColors.gigaAccent,
+  'custom-accent': themeColors.customAccent,
   'beans-gold': themeColors.beansGold,
   'manager-text': themeColors.managerText,
   'metric-accent': themeColors.metricAccent,
@@ -47,6 +47,25 @@ const unoThemeColors = {
   'todo-countdown-warning-text': themeColors.todoCountdownWarningText,
   'todo-indicator-active': themeColors.todoIndicatorActive,
   'todo-indicator-inactive': themeColors.todoIndicatorInactive,
+  'buyer-dashboard-bg': themeColors.buyerDashboardBg,
+  'buyer-card-bg': themeColors.buyerCardBg,
+  'buyer-card-shadow': themeColors.buyerCardShadow,
+  'buyer-primary-text': themeColors.buyerPrimaryText,
+  'buyer-secondary-text': themeColors.buyerSecondaryText,
+  'buyer-muted-text': themeColors.buyerMutedText,
+  'buyer-accent': themeColors.buyerAccent,
+  'buyer-accent-soft': themeColors.buyerAccentSoft,
+  'buyer-divider': themeColors.buyerDivider,
+  'buyer-badge-bg': themeColors.buyerBadgeBg,
+  'buyer-tag-warning-bg': themeColors.buyerTagWarningBg,
+  'buyer-tag-warning-text': themeColors.buyerTagWarningText,
+  'buyer-tag-danger-bg': themeColors.buyerTagDangerBg,
+  'buyer-tag-danger-text': themeColors.buyerTagDangerText,
+  'buyer-chart-default': themeColors.buyerChartDefault,
+  'buyer-chart-highlight': themeColors.buyerChartHighlight,
+  'buyer-chart-warning': themeColors.buyerChartWarning,
+  'buyer-indicator-active': themeColors.buyerIndicatorActive,
+  'buyer-indicator-inactive': themeColors.buyerIndicatorInactive,
 }
 
 const rootVars = `
@@ -68,7 +87,7 @@ const rootVars = `
   --base-info-gradient-end: ${themeColors.baseInfoGradientEnd};
   --base-info-text: ${themeColors.baseInfoTextPrimary};
   --base-info-muted: ${themeColors.baseInfoTextMuted};
-  --giga-accent: ${themeColors.gigaAccent};
+  --custom-accent: ${themeColors.customAccent};
   --beans-gold: ${themeColors.beansGold};
   --manager-text: ${themeColors.managerText};
   --metric-accent: ${themeColors.metricAccent};
@@ -99,6 +118,25 @@ const rootVars = `
   --todo-countdown-warning-text: ${themeColors.todoCountdownWarningText};
   --todo-indicator-active: ${themeColors.todoIndicatorActive};
   --todo-indicator-inactive: ${themeColors.todoIndicatorInactive};
+  --buyer-dashboard-bg: ${themeColors.buyerDashboardBg};
+  --buyer-card-bg: ${themeColors.buyerCardBg};
+  --buyer-card-shadow: ${themeColors.buyerCardShadow};
+  --buyer-primary-text: ${themeColors.buyerPrimaryText};
+  --buyer-secondary-text: ${themeColors.buyerSecondaryText};
+  --buyer-muted-text: ${themeColors.buyerMutedText};
+  --buyer-accent: ${themeColors.buyerAccent};
+  --buyer-accent-soft: ${themeColors.buyerAccentSoft};
+  --buyer-divider: ${themeColors.buyerDivider};
+  --buyer-badge-bg: ${themeColors.buyerBadgeBg};
+  --buyer-tag-warning-bg: ${themeColors.buyerTagWarningBg};
+  --buyer-tag-warning-text: ${themeColors.buyerTagWarningText};
+  --buyer-tag-danger-bg: ${themeColors.buyerTagDangerBg};
+  --buyer-tag-danger-text: ${themeColors.buyerTagDangerText};
+  --buyer-chart-default: ${themeColors.buyerChartDefault};
+  --buyer-chart-highlight: ${themeColors.buyerChartHighlight};
+  --buyer-chart-warning: ${themeColors.buyerChartWarning};
+  --buyer-indicator-active: ${themeColors.buyerIndicatorActive};
+  --buyer-indicator-inactive: ${themeColors.buyerIndicatorInactive};
 }
 `
 
@@ -124,13 +162,13 @@ export default defineConfig({
     ['card-surface-muted', 'rounded-2xl bg-[var(--card-bg-muted)] border border-transparent'],
     [
       'base-info-surface',
-      'rounded-[24px] bg-gradient-to-r from-[var(--base-info-gradient-start)] to-[var(--base-info-gradient-end)] text-[var(--base-info-text)] px-[24px] py-[24px] md:px-[32px] md:py-[28px]',
+      'rounded-[24px] bg-gradient-to-r from-[var(--base-info-gradient-start)] to-[var(--base-info-gradient-end)] text-[var(--base-info-text)] px-[24px] py-[24px] md:px-[32px] md:py-[28px] box-border',
     ],
     ['summary-grid', 'flex flex-col gap-[16px]'],
     ['summary-right', 'flex flex-wrap items-center gap-[12px] text-[14px] text-[var(--manager-text)]'],
     ['info-divider', 'inline-block w-px h-[20px] bg-white/25 mx-[12px]'],
     ['id-chip', 'inline-flex items-center gap-[6px] rounded-full bg-white/10 px-[12px] py-[4px] text-[14px] text-[var(--base-info-text)]'],
-    ['id-badge', 'inline-flex items-center justify-center min-w-[24px] h-[18px] rounded-[6px] bg-[var(--giga-accent)] text-white text-[12px] font-semibold px-[6px]'],
+    ['id-badge', 'inline-flex items-center justify-center min-w-[24px] h-[18px] rounded-[6px] bg-[var(--custom-accent)] text-white text-[12px] font-semibold px-[6px]'],
     ['metric-link', 'group inline-flex items-center gap-[4px] border-none bg-transparent p-0 text-[14px] text-[var(--base-info-text)] cursor-pointer'],
     ['metric-content', 'inline-flex items-baseline gap-[6px] text-[var(--metric-accent)] decoration-[var(--metric-accent)] group-hover:underline'],
     ['metric-unit', 'text-[14px] text-[var(--metric-accent)]'],
@@ -138,7 +176,7 @@ export default defineConfig({
     ['level-pill', 'inline-flex items-center gap-[4px] rounded-full bg-white/10 px-[10px] py-[2px] text-[12px] uppercase tracking-[0.12em]'],
     [
       'todo-overview-shell',
-      'flex h-[256px] w-full flex-shrink-0 items-center gap-[16px] rounded-[20px] border-[2px] border-[#ffffff] bg-[linear-gradient(180deg,#E6EDFF_-9.01%,#FFFFFF_100%)] px-[24px] py-[24px]',
+      'flex w-full flex-shrink-0 items-center gap-[16px] rounded-[20px] border-[2px] border-[#ffffff] px-[24px] py-[24px] box-border',
     ],
     ['todo-overview-grid', 'flex h-full flex-1 flex-col gap-[24px]'],
     ['todo-overview-right', 'flex h-full flex-[0_1_320px] max-w-[320px] flex-col'],

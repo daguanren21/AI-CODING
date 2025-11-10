@@ -60,3 +60,6 @@ Currently a generic web-app starter. Expect future work to revolve around dashbo
 - GitHub repository: `https://github.com/daguanren21/AI-CODING.git` (main branch).
 - Element Plus CDN/assets, UnoCSS presets, and npm registry packages; ensure those sources remain reachable.
 
+## OpenSpec Archive Notes
+- `add-buyer-center-dashboard` 已在 2025-11-10 迁移至 `openspec/changes/archive/add-buyer-center-dashboard/`，相关 proposal/spec/tasks/design 均以归档形式保存，新增工作若需复用应复制到新的 change-id。
+

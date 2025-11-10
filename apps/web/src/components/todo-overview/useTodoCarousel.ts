@@ -2,9 +2,9 @@ import { computed } from "vue"
 import type { IToDoListModuleItem } from "./types"
 
 /**
- * ¸ù¾Ý¸ø¶¨µÄ groupSize ½«´ý°ìÁÐ±íÇÐÆ¬£¬¹© Swiper ÂÖ²¥Õ¹Ê¾¡£
- * - groupSize Ð¡ÓÚ 1 Ê±×Ô¶¯»ØÍËÎª 1
- * - ÎÞÊý¾ÝÊ±Ê¼ÖÕ·µ»Ø `[[]]`£¬±ãÓÚÄ£°åäÖÈ¾¿ÕÌ¬
+ * æ ¹æ®ç»™å®šçš„ groupSize å°†å¾…åŠžåˆ—è¡¨åˆ‡ç‰‡ï¼Œä¾› Swiper è½®æ’­å±•ç¤ºã€‚
+ * - groupSize å°äºŽ 1 æ—¶è‡ªåŠ¨å›žé€€ä¸º 1
+ * - æ— æ•°æ®æ—¶å§‹ç»ˆè¿”å›ž `[[]]`ï¼Œä¾¿äºŽæ¨¡æ¿æ¸²æŸ“ç©ºæ€
  */
 export function useTodoCarousel(getItems: () => IToDoListModuleItem[] | undefined, getGroupSize: () => number | undefined) {
   return computed(() => {
