@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import 'uno.css'
 
 import App from './App.vue'
+import router from './router'
 
 async function enableMocking() {
   if (!import.meta.env.DEV) return
@@ -21,6 +22,7 @@ async function bootstrap() {
   const pinia = createPinia()
 
   app.use(pinia)
+  app.use(router)
   app.use(ElementPlus)
   app.mount('#app')
 }
