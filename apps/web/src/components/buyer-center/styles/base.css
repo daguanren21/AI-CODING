@@ -1,0 +1,15 @@
+﻿.buyer-dashboard {
+  font-family: "Alibaba PuHuiTi","Microsoft YaHei","PingFang SC",sans-serif;
+  color: var(--buyer-primary-text);
+  background: var(--buyer-dashboard-bg);
+  --buyer-column-gap: 16px;
+  --buyer-row-gap: 16px;
+}
+
+.buyer-dashboard * {
+  font-family: inherit;
+}
+
+.buyer-dashboard__column {
+  gap: var(--buyer-column-gap);
+}

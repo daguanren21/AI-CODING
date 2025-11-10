@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ElPopover, ElIcon } from 'element-plus'
 import { ArrowDown, Message, Phone } from '@element-plus/icons-vue'
+import { toRef } from 'vue'
 import type { ManagerInfo } from './types'
 
 const props = defineProps<{ manager: ManagerInfo }>()
+const manager = toRef(props, 'manager')
 </script>
 
 <template>

@@ -30,7 +30,7 @@ const state = computed(() => baseInfoStore.baseInfo)
           <span class="text-[var(--base-info-text)]">{{ state.user.id }}</span>
         </div>
         <span class="info-divider" aria-hidden="true" />
-        <BaseInfoMetricCard :card="state.gigaIndex" />
+        <BaseInfoMetricCard :card="state.customIndex" />
         <span class="info-divider" aria-hidden="true" />
         <BaseInfoMetricCard :card="state.beans" />
         <span class="info-divider" aria-hidden="true" />

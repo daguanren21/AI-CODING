@@ -1,8 +1,10 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import TodoCardGrid from "./TodoCardGrid.vue"
-import DueSoonPanel from "./DueSoonPanel.vue"
-import { useTodoOverviewStore } from "../../stores/todoOverviewStore"
+
+import TodoCardGrid from './TodoCardGrid.vue'
+import DueSoonPanel from './DueSoonPanel.vue'
+import BuyerDashboardShell from '../buyer-center/BuyerDashboardShell.vue'
+import { useTodoOverviewStore } from '../../stores/todoOverviewStore'
 
 const todoOverviewStore = useTodoOverviewStore()
 
@@ -34,4 +36,12 @@ const dueSoonModule = computed(() => todoOverviewStore.dueSoon)
       {{ todoOverviewStore.error }}
     </p>
   </section>
+  <BuyerDashboardShell />
 </template>
+
+<style scoped>
+.todo-overview-shell {
+  background: linear-gradient(180deg, #E6EDFF -9.01%, #FFFFFF 100%);
+  box-sizing: border-box;
+}
+</style>

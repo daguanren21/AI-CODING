@@ -28,9 +28,11 @@ describe('stores', () => {
 
   it('captures base info errors', async () => {
     const store = useBaseInfoStore()
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     vi.spyOn(baseInfoApi, 'fetchBaseInfo').mockRejectedValueOnce(new Error('network error'))
     await store.loadBaseInfo()
     expect(store.error).toBe('加载基础信息失败')
+    consoleSpy.mockRestore()
   })
 
   it('skips duplicate base info requests while loading', async () => {
@@ -56,9 +58,11 @@ describe('stores', () => {
 
   it('captures todo overview errors', async () => {
     const store = useTodoOverviewStore()
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
     vi.spyOn(todoApi, 'fetchTodoOverview').mockRejectedValueOnce(new Error('fail'))
     await store.loadTodoOverview()
     expect(store.error).toBe('加载待办数据失败')
+    consoleSpy.mockRestore()
   })
 
   it('skips duplicate todo overview requests while loading', async () => {

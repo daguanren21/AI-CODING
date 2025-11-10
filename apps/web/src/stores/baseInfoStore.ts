@@ -21,7 +21,7 @@ export const useBaseInfoStore = defineStore('base-info', () => {
     } catch (err) {
       /* c8 ignore next */
       console.error(err)
-      error.value = '加载基础信息失败'
+      error.value = '????????'
     } finally {
       loading.value = false
     }

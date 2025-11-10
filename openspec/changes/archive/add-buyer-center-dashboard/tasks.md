@@ -1,0 +1,15 @@
+﻿## Implementation
+- [ ] 阅读 Buyer Center OpenSpec proposal 并确认范围
+- [ ] 通过 Figma MCP 抓取平台小秘书、公告、库存概览、实时库龄、资金、返点广场、任务模块样式（记录 spacing、颜色、字体）
+- [ ] 在 `apps/web/src/components/buyer-center` 下实现通用 Card 组件（背景 #fff、padding 16px 8px、tip 区域、link icon 条件渲染、slot 内容、空态）
+- [ ] 接入 Element Plus `el-tooltip` 渲染 tip，并添加 Story/Vitest smoke test
+- [ ] 实现 3 栏布局容器：高度 860px、列间距 16px、列内卡片保持统一 gap
+- [ ] 左列：落地平台小秘书 + 平台公告；公告高度=小秘书高度（`useElementSize`+动态裁剪列表最多 7 条）
+- [ ] 中列：实现库存概览、实时库龄分布、banner 轮播。实时库龄分布需基于 ECharts 横向柱状图，支持 `horizontal_segments` 分段、X 轴数量区间、Y 轴“两行标签（天数段/仓储费）”，柱体顶部显示数量+占比，颜色按 `style` (highlight→#FF8B38、warning→#FFA238、default→#75A0F4)。
+- [ ] 右列：实现资金、店铺返点合约广场轮播、做任务领云仓豆轮播
+- [ ] 在 `src/types/enum.ts` 定义 `IsReply`、`IsRead`、`MakeSureStatus` 及实时库龄 `IInventoryAge*` 接口；导出供组件使用
+- [ ] 在 `src/api/buyerCenter.ts`（或等价目录）定义 `ServiceStructure`、Mock API、`common.linkUrl` 行为，以及实时库龄数据（details/proportion/segments/max_qty）
+- [ ] Pinia store/composable 同步高度与模块数据（公告根据小秘书高度裁剪；实时库龄根据 `horizontal_segments` 生成坐标与单位）
+- [ ] Playwright/Vitest 编写 smoke 测试：Card 空态、tip 显示、链接 icon、轮播左右切换、实时库龄颜色/标签
+- [ ] 更新文档（README 或组件说明）列出数据契约与 Figma 链接
+- [ ] 收尾：`pnpm lint`/`pnpm test`、视觉自检、准备 PR 描述

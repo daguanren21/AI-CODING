@@ -23,7 +23,7 @@ export const useTodoOverviewStore = defineStore('todo-overview', () => {
     } catch (err) {
       /* c8 ignore next */
       console.error(err)
-      error.value = '加载待办数据失败'
+      error.value = '????????'
     } finally {
       loading.value = false
     }

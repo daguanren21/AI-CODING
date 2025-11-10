@@ -1,24 +1,39 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, type Slots } from 'vue'
 import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import TodoOverview from '../TodoOverview.vue'
 import { useTodoOverviewStore } from '../../../stores/todoOverviewStore'
 
+type SwiperMockInstance = {
+  activeIndex: number
+  autoplay: { start: () => void; stop: () => void }
+  slideTo: () => void
+  update: () => void
+}
+
+type SwiperStubContext = {
+  slots: Slots
+  attrs: {
+    onSwiper?: (instance: SwiperMockInstance) => void
+    onSlideChange?: (instance: SwiperMockInstance) => void
+  } & Record<string, unknown>
+}
+
 vi.mock('swiper/vue', () => {
   const createStub = (name: string) => ({
     name,
     inheritAttrs: false,
-    setup: (_props, { slots, attrs }) => {
-      const instance = {
+    setup: (_props: Record<string, never>, context: SwiperStubContext) => {
+      const { slots, attrs } = context
+      const instance: SwiperMockInstance = {
         activeIndex: 0,
         autoplay: { start: () => {}, stop: () => {} },
         slideTo: () => {},
         update: () => {},
       }
-      if (typeof attrs.onSwiper === 'function') {
-        attrs.onSwiper(instance)
-      }
+      attrs.onSwiper?.(instance)
+      attrs.onSlideChange?.(instance)
       return () => h('div', {}, slots.default?.())
     },
   })
@@ -60,13 +75,12 @@ describe('TodoOverview', () => {
     const wrapper = mountComponent()
     const cards = wrapper.findAll('[data-testid="todo-card"]')
     expect(cards).toHaveLength(10)
-    expect(cards.at(0)?.find('img').exists()).toBe(true)
+    expect(cards[0]?.find('img')).toBeTruthy()
   })
 
   it('renders due soon panel with indicators when more than one slide', () => {
     const wrapper = mountComponent()
     const panel = wrapper.get('[data-testid="todo-due-panel"]')
-    expect(panel.exists()).toBe(true)
     const indicators = panel.findAll('.todo-indicator')
     expect(indicators.length).toBeGreaterThan(1)
   })
@@ -82,7 +96,7 @@ describe('TodoOverview', () => {
     const store = useTodoOverviewStore()
     store.dueSoon.total = store.dueSoon.items.length
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.todo-view-all').exists()).toBe(false)
+    expect(wrapper.findAll('.todo-view-all').length).toBe(0)
   })
 
   it('renders error message when todo store reports a failure', async () => {
