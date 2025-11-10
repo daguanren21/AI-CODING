@@ -24,12 +24,12 @@ describe('BaseInfoSection', () => {
     return wrapper
   }
 
-  it('renders greeting, giga index, and beans data from mock state', () => {
+  it('renders greeting, custom index, and beans data from mock state', () => {
     const wrapper = mountComponent()
     expect(wrapper.text()).toContain('Hi, Alice Zhang')
-    expect(wrapper.text()).toContain('Lv.5 路 GIGA Pro')
+    expect(wrapper.text()).toContain('Lv.5 路 custom Pro')
     expect(wrapper.text()).toContain('ID:345879-0209')
-    expect(wrapper.get('[data-testid="metric-card-giga-index"]').text()).toContain('95.6')
+    expect(wrapper.get('[data-testid="metric-card-custom-index"]').text()).toContain('95.6')
     expect(wrapper.get('[data-testid="metric-card-beans"]').text()).toContain('1550')
     expect(wrapper.get('[data-testid="metric-card-beans"]').text()).toContain('个')
   })
@@ -42,7 +42,7 @@ describe('BaseInfoSection', () => {
     await new Promise((resolve) => setTimeout(resolve, 0))
 
     const popover = document.querySelector('.manager-popover')
-    expect(popover?.textContent).toContain('liuting@gigacloudtech.com')
+    expect(popover?.textContent).toContain('liuting@jousing.com')
   })
 
   it('renders error message when store reports a failure', async () => {

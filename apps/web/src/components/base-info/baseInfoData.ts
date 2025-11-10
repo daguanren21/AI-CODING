@@ -5,11 +5,11 @@ export const mockBaseInfoState: BaseInfoState = {
     name: 'Alice Zhang',
     greeting: 'Hi, Alice Zhang',
     id: 'ID:345879-0209',
-    level: 'Lv.5 路 GIGA Pro',
+    level: 'Lv.5 路 custom Pro',
   },
-  gigaIndex: {
-    id: 'giga-index',
-    label: 'GIGA Index',
+  customIndex: {
+    id: 'custom-index',
+    label: 'custom Index',
     value: '95.6',
     secondary: 'PR: 90',
     description: '近 30 天成交额 +12%，位于品类 Top 3%',
@@ -27,7 +27,6 @@ export const mockBaseInfoState: BaseInfoState = {
     avatar: 'https://placehold.co/96x96/png',
     qr: 'https://placehold.co/120x120/png',
     phone: '180-4567-8910',
-    email: 'liuting@gigacloudtech.com',
+    email: 'liuting@jousing.com',
   },
 }
-

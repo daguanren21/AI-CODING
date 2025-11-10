@@ -1,25 +1,40 @@
 ﻿import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, type Slots } from 'vue'
 import { mount } from '@vue/test-utils'
 import ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import { themeColors } from './theme/colors'
 
+type SwiperMockInstance = {
+  activeIndex: number
+  autoplay: { start: () => void; stop: () => void }
+  slideTo: () => void
+  update: () => void
+}
+
+type SwiperStubContext = {
+  slots: Slots
+  attrs: {
+    onSwiper?: (instance: SwiperMockInstance) => void
+    onSlideChange?: (instance: SwiperMockInstance) => void
+  } & Record<string, unknown>
+}
+
 vi.mock('swiper/vue', () => {
   const createStub = (name: string) => ({
     name,
     inheritAttrs: false,
-    setup: (_props, { slots, attrs }) => {
-      const instance = {
+    setup: (_props: Record<string, never>, context: SwiperStubContext) => {
+      const { slots, attrs } = context
+      const instance: SwiperMockInstance = {
         activeIndex: 0,
         autoplay: { start: () => {}, stop: () => {} },
         slideTo: () => {},
         update: () => {},
       }
-      if (typeof attrs.onSwiper === 'function') {
-        attrs.onSwiper(instance)
-      }
+      attrs.onSwiper?.(instance)
+      attrs.onSlideChange?.(instance)
       return () => h('div', {}, slots.default?.())
     },
   })

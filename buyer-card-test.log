@@ -1,0 +1,33 @@
+
+> @custom/web@0.0.0 test:run D:\demo code\ai-coding\apps\web
+> vitest run "--" "--runTestsByPath" "src/components/buyer-center/__tests__/BuyerCard.spec.ts"
+
+
+[1m[46m RUN [49m[22m [36mv4.0.6 [39m[90mD:/demo code/ai-coding/apps/web[39m
+
+ [32m�?[39m src/components/todo-overview/__tests__/useTodoCarousel.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m�?[39m src/components/__tests__/MainContentShell.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 121[2mms[22m[39m
+ [32m�?[39m src/components/todo-overview/__tests__/DueSoonPanel.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 80[2mms[22m[39m
+ [32m�?[39m src/stores/__tests__/stores.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstdout[2m | src/components/buyer-center/__tests__/BuyerCard.spec.ts[2m > [22m[2mBuyerCard[2m > [22m[2mshows tip and link when provided
+[22m[39m<div><section data-v-40686aaa="" class="buyer-card"><header data-v-40686aaa="" class="buyer-card__header"><div data-v-40686aaa="" class="buyer-card__title"><span data-v-40686aaa="" class="buyer-card__title-text">资金总览</span><i data-v-40686aaa="" class="i-ep-warning buyer-card__tip el-tooltip__trigger el-tooltip__trigger" aria-label="提示"></i><!--teleport start--><!--teleport end--></div><div data-v-40686aaa="" class="buyer-card__meta"><span data-v-40686aaa="" class="buyer-card__message">更多</span><a data-v-40686aaa="" class="el-link el-link--default is-hover-underline buyer-card__link" href="https://example.com" target="_blank"><!--v-if--><span class="el-link__inner"><i data-v-40686aaa="" class="el-icon"><svg data-v-40686aaa="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path fill="currentColor" d="M340.864 149.312a30.59 30.59 0 0 0 0 42.752L652.736 512 340.864 831.872a30.59 30.59 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"></path></svg></i></span><!--v-if--></a></div></header><div data-v-40686aaa="" class="buyer-card__body"><div>content</div></div></section></div><div id="el-popper-container-498"></div>
+
+[90mstdout[2m | src/components/buyer-center/__tests__/BuyerCard.spec.ts[2m > [22m[2mBuyerCard[2m > [22m[2mfalls back to empty state when no slot
+[22m[39m<div id="el-popper-container-498"></div><div><section data-v-40686aaa="" class="buyer-card"><header data-v-40686aaa="" class="buyer-card__header"><div data-v-40686aaa="" class="buyer-card__title"><span data-v-40686aaa="" class="buyer-card__title-text">资金总览</span><!--v-if--></div><!--v-if--></header><div data-v-40686aaa="" class="buyer-card__body"><div data-v-269f274e="" data-v-40686aaa="" class="buyer-card-empty"><div data-v-269f274e="" class="buyer-card-empty__icon"><i data-v-269f274e="" class="i-ep-box" aria-hidden="true"></i></div><p data-v-269f274e="" class="buyer-card-empty__text">暂无数据</p></div></div></section></div>
+
+ [31m�?[39m src/components/buyer-center/__tests__/BuyerCard.spec.ts [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 50[2mms[22m[39m
+[31m     [31m×[31m shows tip and link when provided[39m[32m 43[2mms[22m[39m
+[31m     [31m×[31m falls back to empty state when no slot[39m[32m 5[2mms[22m[39m
+ [32m�?[39m src/components/base-info/__tests__/BaseInfoSection.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 429[2mms[22m[39m
+ [32m�?[39m src/components/__tests__/SiteHeader.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 605[2mms[22m[39m
+     [33m[2m�?[22m[39m renders navigation, utility links, and new pills [33m 417[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m7 failed[39m[22m[2m | [22m[1m[32m6 passed[39m[22m[90m (13)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m25 passed[39m[22m[90m (27)[39m
+[2m   Start at [22m 13:59:03
+[2m   Duration [22m 4.30s[2m (transform 2.14s, setup 3.95s, collect 5.96s, tests 1.31s, environment 18.58s, prepare 340ms)[22m
+
+D:\demo code\ai-coding\apps\web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL�?@custom/web@0.0.0 test:run: `vitest run "--" "--runTestsByPath" "src/components/buyer-center/__tests__/BuyerCard.spec.ts"`
+Exit status 1
+[2025-11-09 17:05] Added convert-to-utf8 script + rewrote buyer center panels to match Figma.

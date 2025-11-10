@@ -1,7 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, type Slots } from 'vue'
 import { mount } from '@vue/test-utils'
 import DueSoonPanel from '../DueSoonPanel.vue'
+import type { IToDoListModule } from '../types'
 
 const swiperInstances: Array<{
   slideTo: ReturnType<typeof vi.fn>
@@ -9,20 +10,36 @@ const swiperInstances: Array<{
   autoplay: { start: ReturnType<typeof vi.fn>; stop: ReturnType<typeof vi.fn> }
 }> = []
 
+type SwiperMockInstance = {
+  activeIndex: number
+  autoplay: { start: ReturnType<typeof vi.fn>; stop: ReturnType<typeof vi.fn> }
+  slideTo: ReturnType<typeof vi.fn>
+  update: ReturnType<typeof vi.fn>
+}
+
+type SwiperStubContext = {
+  slots: Slots
+  attrs: {
+    onSwiper?: (instance: SwiperMockInstance) => void
+    onSlideChange?: (instance: SwiperMockInstance) => void
+  } & Record<string, unknown>
+}
+
 vi.mock('swiper/vue', () => {
   const createStub = (name: string) => ({
     name,
     inheritAttrs: false,
-    setup: (_props: unknown, { slots, attrs }: any) => {
-      const instance = {
+    setup: (_props: Record<string, never>, context: SwiperStubContext) => {
+      const { slots, attrs } = context
+      const instance: SwiperMockInstance = {
         activeIndex: 0,
         autoplay: { start: vi.fn(), stop: vi.fn() },
         slideTo: vi.fn(),
         update: vi.fn(),
       }
       swiperInstances.push({ slideTo: instance.slideTo, update: instance.update, autoplay: instance.autoplay })
-      attrs?.onSwiper?.(instance)
-      attrs?.onSlideChange?.(instance)
+      attrs.onSwiper?.(instance)
+      attrs.onSlideChange?.(instance)
       return () => h('div', {}, slots.default?.())
     },
   })
@@ -31,49 +48,49 @@ vi.mock('swiper/vue', () => {
 
 vi.mock('swiper/modules', () => ({ Autoplay: {} }))
 
-const createModule = () => ({
-  title: '近七天到期',
+const createModule = (): IToDoListModule => ({
+  title: '?????',
   total: 20,
   icon: '/icons/delivery.svg',
   url: 'https://example.com/todos/due-soon',
   groupSize: 3,
   items: [
     {
-      title: '发货订单待提货',
+      title: '???????',
       meta: 'ID: LC20250307003',
-      countdownDesc: '12 小时内',
-      tag: { label: '紧急', tone: 'critical' as const },
+      countdownDesc: '12 ???',
+      tag: { label: '??', tone: 'critical' },
       url: 'https://example.com/orders/LC20250307003',
     },
     {
-      title: '异常订单待处理',
+      title: '???????',
       meta: 'ID: LC20250307003',
-      countdownDesc: '1 天后',
-      tag: { label: '紧急', tone: 'critical' as const },
+      countdownDesc: '1 ??',
+      tag: { label: '??', tone: 'critical' },
       url: 'https://example.com/orders/exceptions',
     },
     {
-      title: '店铺返点协议履约中',
-      countdownDesc: '3 天后',
-      tag: { label: '提醒', tone: 'warning' as const },
+      title: '????????',
+      countdownDesc: '3 ??',
+      tag: { label: '??', tone: 'warning' },
       url: 'https://example.com/contracts/store-rebate',
     },
     {
-      title: '现货保证金协议待支付',
-      countdownDesc: '4 天后',
-      tag: { label: '提醒', tone: 'warning' as const },
+      title: '??????????',
+      countdownDesc: '4 ??',
+      tag: { label: '??', tone: 'warning' },
       url: 'https://example.com/contracts/spot',
     },
     {
-      title: '保障服务待补充资料',
-      countdownDesc: '5 天后',
-      tag: { label: '提醒', tone: 'warning' as const },
+      title: '?????????',
+      countdownDesc: '5 ??',
+      tag: { label: '??', tone: 'warning' },
       url: 'https://example.com/service/support',
     },
     {
-      title: '退返品待跟进',
-      countdownDesc: '6 天后',
-      tag: { label: '紧急', tone: 'critical' as const },
+      title: '??????',
+      countdownDesc: '6 ??',
+      tag: { label: '??', tone: 'critical' },
       url: 'https://example.com/returns/follow-up',
     },
   ],
@@ -93,7 +110,7 @@ describe('DueSoonPanel', () => {
     expect(wrapper.get('.todo-count-tag').text()).toBe('20')
     expect(firstItem.text()).toContain('ID: LC20250307003')
     const countdown = firstItem.get('.todo-due-countdown')
-    expect(countdown.text()).toBe('12 小时内')
+    expect(countdown.text()).toBe('12 ???')
     expect(countdown.classes()).toContain('todo-countdown--critical')
   })
 
@@ -101,21 +118,21 @@ describe('DueSoonPanel', () => {
     const module = createModule()
     module.total = module.items.length
     const wrapper = mount(DueSoonPanel, { props: { module } })
-    expect(wrapper.find('.todo-view-all').exists()).toBe(false)
+    expect(wrapper.findAll('.todo-view-all').length).toBe(0)
   })
 
   it('hides view-all button when url is missing', () => {
     const module = createModule()
     module.url = undefined
     const wrapper = mount(DueSoonPanel, { props: { module } })
-    expect(wrapper.find('.todo-view-all').exists()).toBe(false)
+    expect(wrapper.findAll('.todo-view-all').length).toBe(0)
   })
 
   it('does not render indicators when there is only one slide', () => {
     const module = createModule()
     module.items = module.items.slice(0, 3)
     const wrapper = mount(DueSoonPanel, { props: { module } })
-    expect(wrapper.find('.todo-indicator').exists()).toBe(false)
+    expect(wrapper.findAll('.todo-indicator').length).toBe(0)
   })
 
   it('clicking indicator delegates to swiper slideTo', async () => {
