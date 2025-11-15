@@ -1,0 +1,4 @@
+﻿docs/.vitepress/dist/
+packages/slides/dist/
+
+docs/node_modules/
