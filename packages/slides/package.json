@@ -1,15 +1,15 @@
-﻿{
+{
     "name":  "@workspace/slides",
     "private":  true,
     "scripts":  {
-                    "dev":  "slidev ../../slides/giga-index-dialog/slides.md",
-                    "build":  "slidev build ../../slides/giga-index-dialog/slides.md",
-                    "export:pdf":  "slidev export ../../slides/giga-index-dialog/slides.md --format pdf",
-                    "export:png":  "slidev export ../../slides/giga-index-dialog/slides.md --format png",
+                    "dev":  "slidev ../../slides/index-dialog/slides.md",
+                    "build":  "slidev build ../../slides/index-dialog/slides.md",
+                    "export:pdf":  "slidev export ../../slides/index-dialog/slides.md --format pdf",
+                    "export:png":  "slidev export ../../slides/index-dialog/slides.md --format png",
                     "lint":  "echo slides lint via root"
                 },
     "devDependencies":  {
-                            "@slidev/cli":  "52.8.0",
-                            "@slidev/theme-default":  "^0.25.0"
+                            "@slidev/cli":  "catalog:web",
+                            "@slidev/theme-default":  "catalog:web"
                         }
 }

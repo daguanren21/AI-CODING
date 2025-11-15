@@ -1,6 +1,6 @@
-# 文档首页
+﻿# 鏂囨。棣栭〉
 
-- 查阅计划文档：[/plans/2025-11-11-giga-index-dialog](/plans/2025-11-11-giga-index-dialog)
-- 本仓库采用 Monorepo：VitePress（文档）与 Slidev（演示）独立运行与部署。
+- 鏌ラ槄璁″垝鏂囨。锛歔/plans/2025-11-11-index-dialog](/plans/2025-11-11-index-dialog)
+- 鏈粨搴撻噰鐢?Monorepo锛歏itePress锛堟枃妗ｏ級涓?Slidev锛堟紨绀猴級鐙珛杩愯涓庨儴缃层€?
+- 蹇€熷紑濮嬶細[/templates/README](/templates/README)
 
-- 快速开始：[/templates/README](/templates/README)

@@ -1,0 +1,9 @@
+{
+    "name":  "@content/slides-index-dialog",
+    "private":  true,
+    "devDependencies":  {
+                            "@slidev/cli":  "52.8.0",
+                            "@slidev/theme-default":  "0.25.0",
+                            "prism-theme-vars":  "^0.2.5"
+                        }
+}

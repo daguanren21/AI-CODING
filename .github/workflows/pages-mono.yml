@@ -42,7 +42,7 @@ jobs:
         run: npm --prefix docs install -D vitepress@latest
 
       - name: Install content deps (slides)
-        run: npm --prefix slides/giga-index-dialog install -D @slidev/cli @slidev/theme-default
+        run: npm --prefix slides/index-dialog install -D @slidev/cli @slidev/theme-default
 
       - name: Build docs
         env:
@@ -74,3 +74,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

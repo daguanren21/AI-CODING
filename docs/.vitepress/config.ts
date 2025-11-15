@@ -1,17 +1,17 @@
-export default {
+﻿export default {
   base: process.env.DOCS_BASE || '/',
   title: 'Index Dialog Docs',
   description: 'Docs and workflows (Monorepo: VitePress + Slidev)',
   lastUpdated: true,
   themeConfig: {
     nav: [
-      { text: 'Plan', link: '/plans/2025-11-11-giga-index-dialog' },
+      { text: 'Plan', link: '/plans/2025-11-11-index-dialog' },
     ],
     sidebar: [
       {
         text: 'Plan',
         items: [
-          { text: 'Index Dialog', link: '/plans/2025-11-11-giga-index-dialog' },
+          { text: 'Index Dialog', link: '/plans/2025-11-11-index-dialog' },
         ],
       },
       {
@@ -30,3 +30,4 @@ export default {
     code: { theme: { light: 'vitesse-light', dark: 'vitesse-dark' } },
   },
 }
+
