@@ -1,0 +1,11 @@
+/* 容器与版式 */
+.VPDoc .container{ max-width: 1160px; }
+.VPDoc h2{ margin-top: 2.0rem; }
+.VPDoc h3{ margin-top: 1.6rem; }
+
+/* 代码块与内联代码 */
+.vp-doc :not(pre)>code{ background: var(--vp-c-bg-soft); padding: .15em .35em; border-radius: .25rem; }
+.vp-doc pre{ border-radius: .6rem; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+
+/* 右侧大纲 */
+.VPSidebarOutline{ position: sticky; top: 64px; }

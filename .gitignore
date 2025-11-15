@@ -6,4 +6,6 @@ dist/
 .DS_Store
 apps/*/.turbo/
 unbuild/
-apps/*/coverage/
+apps/*/coverage/docs/.vitepress/dist/
+docs/.vitepress/.temp/
+docs/.vitepress/cache/

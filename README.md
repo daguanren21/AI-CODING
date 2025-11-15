@@ -65,3 +65,12 @@
 - **覆盖率不足**：检查是否有条件分支未触发，或是否引入了新的源文件却没有测试。
 
 如需更多背景，可查阅 `openspec/AGENTS.md`、`openspec/project.md`，或在 PR 中附上相关设计/需求链接。
+
+## Monorepo: Docs & Slides
+
+- 开发文档站：`pnpm dev:docs`（首次需 `pnpm -C packages/docs i`）
+- 构建文档站：`pnpm build:docs`
+- 开发幻灯片：`pnpm dev:slides`（首次需 `pnpm -C packages/slides i`）
+- 构建/导出：`pnpm build:slides`，或 `pnpm export:slides:pdf|png`
+
+> 注：依赖未锁版本，保持最新。生产部署前请按需固定版本。

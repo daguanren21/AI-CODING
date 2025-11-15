@@ -1,0 +1,5 @@
+﻿**/dist/
+**/.vite/
+**/.turbo/
+**/node_modules/
+**/coverage/

@@ -1,0 +1,16 @@
+{
+    "name":  "@workspace/docs",
+    "private":  true,
+    "scripts":  {
+                    "dev":  "vitepress dev ../../docs",
+                    "build":  "vitepress build ../../docs",
+                    "preview":  "vitepress preview ../../docs",
+                    "lint":  "eslint -c ../../eslint.config.mjs --max-warnings=0 \u0027../../docs/.vitepress/**/*.{ts,js,mts,cts}\u0027 \u0027../../docs/.vitepress/theme/**/*.{ts,js}\u0027"
+                },
+    "devDependencies":  {
+                            "vitepress":  "catalog:web",
+                            "vue":  "catalog:web",
+                            "@vue/server-renderer":  "catalog:web",
+                            "vite":  "catalog:web"
+                        }
+}
