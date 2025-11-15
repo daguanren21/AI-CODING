@@ -52,12 +52,23 @@ jobs:
       - name: Build slides
         run: pnpm build:slides
 
+      - name: Verify slides artifact exists
+        run: |
+          if [ ! -f slides/index-dialog/dist/index.html ]; then
+            echo "Slidev output not found at slides/index-dialog/dist/index.html"
+            echo "Directory listing for slides/index-dialog:"
+            ls -la slides/index-dialog || true
+            echo "Directory listing for slides/index-dialog/dist:"
+            ls -la slides/index-dialog/dist || true
+            exit 1
+          fi
+
       - name: Compose Pages artifact
         run: |
           rm -rf out
           mkdir -p out/docs out/slides
           cp -r docs/.vitepress/dist/* out/docs/
-          cp -r packages/slides/dist/* out/slides/
+          cp -r slides/index-dialog/dist/* out/slides/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
