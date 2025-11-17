@@ -79,9 +79,10 @@ After deployment, create separate PR to:
 - If request is ambiguous, ask 1–2 clarifying questions before scaffolding
 
 ### EXECUTE Hook (Mandatory)
-- Before every response in `[MODE: EXECUTE]`, quickly re-open `openspec/project.md` and restate至少两条最关键的约束（例如 Git 工作流、UI/测试标准）在回复开头，确认你遵守最新规范。
-- 同样在 EXECUTE 回复开头，提醒并询问用户当前 change 的 `openspec/changes/<change-id>/tasks.md` 是否仍有未完成条目：若路径已知且存在未勾选项，直接点名；若路径未知或文件缺失，必须主动向用户索要最新任务清单。
-- 此 Hook 不改变 RESEARCH/PLAN/EXECUTE 的切换规则；它只是在进入 EXECUTE 模式时的固定步骤，除非用户显式书面豁免。
+- Before every response in `[MODE: EXECUTE]`,运行 `python3 scripts/mode_hook.py --mode EXECUTE --change <id>`（若默认 `python` 可用也可替代），并在回复开头复述脚本输出的至少两条关键约束（Git 工作流、测试标准等）。
+- 同样在 EXECUTE 回复开头，依据脚本输出提醒并询问用户当前 change 的 `openspec/changes/<change-id>/tasks.md` 是否仍有未完成条目：若脚本找到未勾选项，必须逐条点名；若脚本报告缺失或未知，立即向用户索要最新任务清单。
+- PLAN 模式建议同样运行脚本（`--mode PLAN`）以保持一致性。
+- 此 Hook 不改变 RESEARCH/PLAN/EXECUTE 的切换规则；它只是在进入 EXECUTE/PLAN 模式时的固定步骤，除非用户显式书面豁免。
 
 ### Search Guidance
 - Enumerate specs: `openspec spec list --long` (or `--json` for scripts)

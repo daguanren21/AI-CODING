@@ -86,3 +86,14 @@ CI workflow 默认将文档发布到 `/<repo>/`，幻灯片发布到 `/slides/`�
 | `CUSTOM_DOMAIN` | `lyc.com`、`www.example.com` | 非空时 workflow 会写 `out/CNAME`，保持 Pages 绑定。 |
 
 DNS 需要：`www` 使用 CNAME 指向 `<username>.github.io`；根域 `@` 使用 ALIAS/ANAME（或 GitHub Pages 提供的四个 A 记录 + 四个 AAAA 记录）。所有记录关闭代理/CDN。配置完等待 5–30 分钟再在 Settings → Pages 点 “Check again”，随后勾 Enforce HTTPS。
+
+### Mode Hook 脚本
+
+进入 PLAN / EXECUTE 模式前，运行 `scripts/mode_hook.py` 以自动输出 `openspec/project.md` 的关键约束以及指定 change 的未完成任务：
+
+```bash
+python3 scripts/mode_hook.py --mode PLAN --change add-site-header-component
+python3 scripts/mode_hook.py --mode EXECUTE --change add-site-header-component
+```
+
+没有提供 `--change` 时脚本会提醒你补充 change-id。若 `tasks.md` 中仍有 `- [ ]` 条目，脚本会逐条列出，以便在接下来的回复中优先处理。
