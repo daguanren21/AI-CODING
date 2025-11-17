@@ -17,6 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DOCS_BASE: ${{ vars.DOCS_BASE != '' && vars.DOCS_BASE || format('/{0}/', github.event.repository.name) }}
+      SLIDES_BASE: ${{ vars.SLIDES_BASE != '' && vars.SLIDES_BASE || '/slides/' }}
+      CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,11 +50,11 @@ jobs:
 
       - name: Build docs
         env:
-          DOCS_BASE: "/${{ github.event.repository.name }}/"
+          DOCS_BASE: ${{ env.DOCS_BASE }}
         run: pnpm build:docs
 
       - name: Build slides
-        run: pnpm build:slides
+        run: pnpm --filter @workspace/slides build -- --base "${{ env.SLIDES_BASE }}"
 
       - name: Verify slides artifact exists
         run: |
@@ -69,6 +73,9 @@ jobs:
           mkdir -p out/docs out/slides
           cp -r docs/.vitepress/dist/* out/docs/
           cp -r slides/index-dialog/dist/* out/slides/
+          if [ -n "${CUSTOM_DOMAIN}" ]; then
+            echo "${CUSTOM_DOMAIN}" > out/CNAME
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
