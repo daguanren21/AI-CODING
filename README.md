@@ -74,3 +74,15 @@
 - 构建/导出：`pnpm build:slides`，或 `pnpm export:slides:pdf|png`
 
 > 注：依赖未锁版本，保持最新。生产部署前请按需固定版本。
+
+### GitHub Pages 自定义域配置
+
+CI workflow 默认将文档发布到 `/<repo>/`，幻灯片发布到 `/slides/`。若绑定自定义域（例如 `lyc.com`），请在仓库 Settings → Variables 中新增以下值来覆盖 base，并让 workflow 自动写入 CNAME：
+
+| 变量名 | 推荐值 | 作用 |
+| --- | --- | --- |
+| `DOCS_BASE` | `/`（自定义域）或 `/<repo>/`（项目页） | 传递给 VitePress `base`，决定静态资源前缀。 |
+| `SLIDES_BASE` | `/slides/` | 传递给 Slidev `--base`，必须保留首尾斜杠。 |
+| `CUSTOM_DOMAIN` | `lyc.com`、`www.example.com` | 非空时 workflow 会写 `out/CNAME`，保持 Pages 绑定。 |
+
+DNS 需要：`www` 使用 CNAME 指向 `<username>.github.io`；根域 `@` 使用 ALIAS/ANAME（或 GitHub Pages 提供的四个 A 记录 + 四个 AAAA 记录）。所有记录关闭代理/CDN。配置完等待 5–30 分钟再在 Settings → Pages 点 “Check again”，随后勾 Enforce HTTPS。
