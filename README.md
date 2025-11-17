@@ -89,11 +89,17 @@ DNS 需要：`www` 使用 CNAME 指向 `<username>.github.io`；根域 `@` 使�
 
 ### Mode Hook 脚本
 
-进入 PLAN / EXECUTE 模式前，运行 `scripts/mode_hook.py` 以自动输出 `openspec/project.md` 的关键约束以及指定 change 的未完成任务：
+进入 PLAN / EXECUTE 模式前，运行 `scripts/mode_hook.py` 以自动输出 `openspec/project.md` 的关键约束以及指定 change 的未完成任务。脚本实体位于 `~/.codex/hooks/mode_hook.py`，仓库中的 `scripts/mode_hook.py` 只是符号链接，方便在仓库根直接调用：
 
 ```bash
 python3 scripts/mode_hook.py --mode PLAN --change add-site-header-component
 python3 scripts/mode_hook.py --mode EXECUTE --change add-site-header-component
+```
+
+如果需要在仓库以外的位置执行（例如在个人 hooks 中自动触发），可以直接运行用户级脚本并传入 `--repo-root` 指向仓库根：
+
+```bash
+python3 ~/.codex/hooks/mode_hook.py --mode EXECUTE --change add-site-header-component --repo-root "/mnt/d/demo code/ai-coding"
 ```
 
 没有提供 `--change` 时脚本会提醒你补充 change-id。若 `tasks.md` 中仍有 `- [ ]` 条目，脚本会逐条列出，以便在接下来的回复中优先处理。
