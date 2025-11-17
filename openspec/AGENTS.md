@@ -79,7 +79,7 @@ After deployment, create separate PR to:
 - If request is ambiguous, ask 1–2 clarifying questions before scaffolding
 
 ### EXECUTE Hook (Mandatory)
-- Before every response in `[MODE: EXECUTE]`,运行 `python3 scripts/mode_hook.py --mode EXECUTE --change <id>`（脚本实体位于 `~/.codex/hooks/mode_hook.py`，若在仓库外执行需加 `--repo-root <path>`），并在回复开头复述脚本输出的至少两条关键约束（Git 工作流、测试标准等）。
+- Before every response in `[MODE: EXECUTE]`,运行 `python3 scripts/mode_hook.py --mode EXECUTE --change <id>`（仓库脚本只是启动器，默认调用 `~/.codex/hooks/mode_hook.py`，可通过 `CODEX_MODE_HOOK` 指定其他路径；若在仓库外执行需加 `--repo-root <path>`），并在回复开头复述脚本输出的至少两条关键约束（Git 工作流、测试标准等）。
 - 同样在 EXECUTE 回复开头，依据脚本输出提醒并询问用户当前 change 的 `openspec/changes/<change-id>/tasks.md` 是否仍有未完成条目：若脚本找到未勾选项，必须逐条点名；若脚本报告缺失或未知，立即向用户索要最新任务清单。
 - PLAN 模式建议同样运行脚本（`--mode PLAN`）以保持一致性。
 - 此 Hook 不改变 RESEARCH/PLAN/EXECUTE 的切换规则；它只是在进入 EXECUTE/PLAN 模式时的固定步骤，除非用户显式书面豁免。
