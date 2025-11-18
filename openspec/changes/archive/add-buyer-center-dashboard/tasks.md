@@ -1,4 +1,5 @@
 ﻿## Implementation
+
 - [ ] 阅读 Buyer Center OpenSpec proposal 并确认范围
 - [ ] 通过 Figma MCP 抓取平台小秘书、公告、库存概览、实时库龄、资金、返点广场、任务模块样式（记录 spacing、颜色、字体）
 - [ ] 在 `apps/web/src/components/buyer-center` 下实现通用 Card 组件（背景 #fff、padding 16px 8px、tip 区域、link icon 条件渲染、slot 内容、空态）

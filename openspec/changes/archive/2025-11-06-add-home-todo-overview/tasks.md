@@ -1,4 +1,5 @@
 ﻿## Implementation Checklist
+
 - [x] 1. 更新 `specs/ui-main-content/spec.md` / `proposal.md` / `tasks.md`，对齐 Figma 视觉、Swiper 交互与真实文案
 - [x] 2. 扩展主题色与 UnoCSS（`theme/colors.ts`、`uno.config.ts`），新增渐变、胶囊、指示器等快捷类，保持与 BaseInfo 的宽高约束一致
 - [x] 3. 重构左侧卡片（`TodoCard.vue`、`TodoCardGrid.vue`、`todoOverviewData.ts`），替换真实 icon、数值与 hover 效果
