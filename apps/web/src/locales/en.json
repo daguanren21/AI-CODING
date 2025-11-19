@@ -1,0 +1,13 @@
+{
+  "customIndex.dialog.title": "Custom Index",
+  "customIndex.dialog.subtitle": "Custom Index: {score}/{max}",
+  "customIndex.dialog.lastUpdated": "Last updated {date}",
+  "customIndex.dialog.frequencyNote": "Updated on the 1st and 16th of each month",
+  "customIndex.dialog.penaltyLabel": "Platform deduction",
+  "customIndex.dialog.suggestion_cta_one": "{count} improvement suggestion",
+  "customIndex.dialog.suggestion_cta_other": "{count} improvement suggestions",
+  "customIndex.dialog.no_suggestion": "No suggestions for now",
+  "customIndex.dialog.tips": "Watch for the next Custom Index refresh after optimization.",
+  "customIndex.dialog.help_link": "Help Center",
+  "customIndex.dialog.error": "Failed to load Custom Index. Please retry."
+}

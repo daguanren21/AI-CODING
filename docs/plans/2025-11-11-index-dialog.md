@@ -1,4 +1,4 @@
-# Index Dialog Implementation Plan
+﻿# Index Dialog Implementation Plan
 
 > **For Claude:** 必须调用 superpowers:executing-plans 按顺序执行任务；每次引用 Figma 设计都先用 figma MCP 的 get_design_context + get_screenshot 获取节点，再实现 UI。
 
@@ -6,14 +6,14 @@
 
 > ⚠️ **1:1 还原要求：** 所有视觉、字号、间距、色值、阴影、交互状态必须与对应 Figma 节点像素级一致；若存在不可避免偏差，需要在本计划中记录原因与截图对比。
 
-**Architecture:** 在 pps/web/src/components/buyer-center/modules 内以 Element Plus ElDialog 构建 Vue 3 组件，内部嵌入 ECharts 雷达图、维度列表、建议列表。所有数据来自 Pinia uyerCenterStore（mock 数据由 ServiceStructure 包裹），并通过 BuyerDashboardShell 的 CTA 打开。样式使用 UnoCSS + buyer-center tokens + scoped CSS；需要在 CSS 中加入项目统一的 box-sizing 约束。
+**Architecture:** 在 apps/web/src/components/buyer-center/modules 内以 Element Plus ElDialog 构建 Vue 3 组件，内部嵌入 ECharts 雷达图、维度列表、建议列表。所有数据来自 Pinia buyerCenterStore（mock 数据由 ServiceStructure 包裹），并通过 BuyerDashboardShell 的 CTA 打开。样式使用 UnoCSS + buyer-center tokens + scoped CSS；需要在 CSS 中加入项目统一的 box-sizing 约束。
 
 > [2025-11-12 15:20 CST] Style map 已补充 “Index Dialog” 关键节点（2083:44844/44845/44856/44859/44982、2083:44886-44895、1580:39853、1568:38148/37023/37028/37030/37031），记录了 960×776 容器、339×201 雷达、397px 维度列以及 #193465/#4877FF/#2861CE/#FA5E43/#EFF3FF 等配色，后续样式直接引用。
-**Tech Stack:** Vue 3 `<script setup>` + TypeScript、Element Plus、ECharts、Pinia、Vitest + Vue Testing Library、UnoCSS、自定义 buyer tokens。
+> **Tech Stack:** Vue 3 `<script setup>` + TypeScript、Element Plus、ECharts、Pinia、Vitest + Vue Testing Library、UnoCSS、自定义 buyer tokens。
 
 ### PROJECT STRUCTURE
 
-```text
+````text
 
 > **Figma 导出提示：** https://www.figma.com/design/4zSfDDD6jpA17jATWYrQWO/2025%E5%B9%B48%E6%9C%88%E4%BB%BD%E4%B8%9A%E5%8A%A1?node-id=2083-44844&m=dev —— 请导出 960px 宽 Index Dialog 截图并保存为 `docs/testing/giga-index/giga-dialog-figma.png`，供 diff 脚本使用。
 
@@ -21,9 +21,9 @@
 
 ### Task 1: 设计走查与素材采集
 
-**Files:**  
+**Files:**
 
-- `docs/design/buyer-center-style-map.md`  
+- `docs/design/buyer-center-style-map.md`
 - 目标 Figma 节点：`2083:44844`, `2083:44845`, `2083:44856`, `2083:44859`, `2083:44982`, `2083:44886-44895`, `1580:39853`, `1568:38148/37023/37028/37030/37031` 等
 
 **Steps:**
@@ -146,7 +146,4 @@
 ```text
 
 _Updated: 2025-11-12 18:58 CST_
-
-
-
-
+````

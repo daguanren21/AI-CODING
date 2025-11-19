@@ -2,6 +2,7 @@ import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { h, type Slots } from 'vue'
 import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
+import type { Plugin } from 'vue'
 import TodoOverview from '../TodoOverview.vue'
 import { useTodoOverviewStore } from '../../../stores/todoOverviewStore'
 
@@ -55,12 +56,12 @@ beforeAll(() => {
 })
 
 const mountComponent = () => {
-  const wrapper = mount(TodoOverview, {
-    attachTo: document.body,
-    global: {
-      plugins: [createPinia()],
-    },
-  })
+    const wrapper = mount(TodoOverview, {
+      attachTo: document.body,
+      global: {
+        plugins: [createPinia() as unknown as Plugin],
+      },
+    })
   cleanup.push(() => wrapper.unmount())
   return wrapper
 }

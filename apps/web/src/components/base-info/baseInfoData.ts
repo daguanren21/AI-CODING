@@ -1,11 +1,97 @@
-import type { BaseInfoState } from './types'
+import type { BaseInfoState, CustomIndexDetail } from './types'
+
+export const mockCustomIndexDetail: CustomIndexDetail = {
+  total: 77.52,
+  max: 100.0,
+  lastUpdated: '2025-06-16',
+  frequencyNote: '每月 1 号和 16 号更新',
+  dimensions: [
+    {
+      id: 'product',
+      label: '产品竞争力',
+      weight: 35,
+      score: 85.25,
+      trend: 'up',
+      suggestionCount: 2,
+      badge: 'good',
+      action: 'suggestion',
+    },
+    {
+      id: 'fulfillment',
+      label: '店铺维护',
+      weight: 5,
+      score: 71.5,
+      trend: 'flat',
+      suggestionCount: 0,
+      badge: 'good',
+      action: 'detail',
+    },
+    {
+      id: 'pricing',
+      label: '交易经验',
+      weight: 30,
+      score: 68.35,
+      trend: 'down',
+      suggestionCount: 3,
+      badge: 'warning',
+      action: 'suggestion',
+    },
+    {
+      id: 'promotion',
+      label: '服务质量',
+      weight: 15,
+      score: 70.5,
+      trend: 'flat',
+      suggestionCount: 1,
+      badge: 'warning',
+      action: 'suggestion',
+    },
+    {
+      id: 'service',
+      label: '商家信誉',
+      weight: 15,
+      score: 79.4,
+      trend: 'up',
+      suggestionCount: 0,
+      badge: 'good',
+      action: 'detail',
+    },
+  ],
+  penalties: [
+    {
+      id: 'platform',
+      label: '平台扣分',
+      value: -4.0,
+      actionLabel: '查看方案',
+      linkUrl: 'https://doc.weixin.qq.com/',
+    },
+  ],
+  suggestions: [
+    {
+      id: 's1',
+      title: '优化物流时效',
+      description: '提升主流线路的签收准时率，减少超时订单。',
+      tips: '优化后的项目可关注下次 Custom Index 分数更新。',
+      linkText: '查看操作指引',
+      linkUrl: 'https://doc.weixin.qq.com/',
+    },
+    {
+      id: 's2',
+      title: '补充商品评价',
+      description: '鼓励买家填写真实评价，提升商家信誉分。',
+      tips: '优化后的项目可关注下次 Custom Index 分数更新。',
+      linkText: '查看操作指引',
+      linkUrl: 'https://doc.weixin.qq.com/',
+    },
+  ],
+}
 
 export const mockBaseInfoState: BaseInfoState = {
   user: {
     name: 'Alice Zhang',
     greeting: 'Hi, Alice Zhang',
     id: 'ID:345879-0209',
-    level: 'Lv.5 路 custom Pro',
+    level: 'Lv.5 Custom Pro',
   },
   customIndex: {
     id: 'custom-index',
@@ -29,4 +115,5 @@ export const mockBaseInfoState: BaseInfoState = {
     phone: '180-4567-8910',
     email: 'liuting@jousing.com',
   },
+  customIndexDetail: mockCustomIndexDetail,
 }

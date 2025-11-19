@@ -23,9 +23,48 @@ export interface ManagerInfo {
   qr: string
 }
 
+export interface CustomIndexDimension {
+  id: string
+  label: string
+  weight: number
+  score: number
+  trend?: 'up' | 'down' | 'flat'
+  suggestionCount?: number
+  badge?: 'good' | 'warning'
+  action?: 'suggestion' | 'detail'
+}
+
+export interface CustomIndexPenalty {
+  id: string
+  label: string
+  value: number
+  actionLabel: string
+  linkUrl?: string
+}
+
+export interface CustomIndexSuggestion {
+  id: string
+  title: string
+  description: string
+  tips: string
+  linkText: string
+  linkUrl: string
+}
+
+export interface CustomIndexDetail {
+  total: number
+  max: number
+  lastUpdated: string
+  frequencyNote: string
+  dimensions: CustomIndexDimension[]
+  penalties: CustomIndexPenalty[]
+  suggestions: CustomIndexSuggestion[]
+}
+
 export interface BaseInfoState {
   user: UserProfile
   customIndex: MetricCardData
   beans: MetricCardData
   manager: ManagerInfo
+  customIndexDetail?: CustomIndexDetail
 }

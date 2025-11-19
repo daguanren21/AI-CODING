@@ -1,0 +1,13 @@
+{
+  "customIndex.dialog.title": "Custom Index",
+  "customIndex.dialog.subtitle": "Custom Index: {score}/{max}",
+  "customIndex.dialog.lastUpdated": "最近更新时间 {date}",
+  "customIndex.dialog.frequencyNote": "每月 1 号和 16 号更新",
+  "customIndex.dialog.penaltyLabel": "平台扣分",
+  "customIndex.dialog.suggestion_cta_one": "{count} 项优化建议",
+  "customIndex.dialog.suggestion_cta_other": "{count} 项优化建议",
+  "customIndex.dialog.no_suggestion": "目前没有建议",
+  "customIndex.dialog.tips": "优化后的项目可关注下次 Custom Index 分数更新。",
+  "customIndex.dialog.help_link": "帮助中心",
+  "customIndex.dialog.error": "加载 Custom Index 失败，请重试"
+}

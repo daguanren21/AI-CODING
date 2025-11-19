@@ -71,6 +71,11 @@ export const themeColors = {
   buyerChartWarning: "#FFA238",
   buyerIndicatorActive: "#FF8B38",
   buyerIndicatorInactive: "#D0D5DD",
+  customIndexDeepBlue: "#193465",
+  customIndexLightBlue: "#4877FF",
+  customIndexMidBlue: "#2861CE",
+  customIndexPenalty: "#FA5E43",
+  customIndexPanelBg: "#EFF3FF",
 } as const
 
 export type ThemeColorKey = keyof typeof themeColors

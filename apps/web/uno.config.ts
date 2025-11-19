@@ -66,6 +66,11 @@ const unoThemeColors = {
   'buyer-chart-warning': themeColors.buyerChartWarning,
   'buyer-indicator-active': themeColors.buyerIndicatorActive,
   'buyer-indicator-inactive': themeColors.buyerIndicatorInactive,
+  'custom-index-deep': themeColors.customIndexDeepBlue,
+  'custom-index-light': themeColors.customIndexLightBlue,
+  'custom-index-mid': themeColors.customIndexMidBlue,
+  'custom-index-penalty': themeColors.customIndexPenalty,
+  'custom-index-panel': themeColors.customIndexPanelBg,
 }
 
 const rootVars = `
@@ -137,6 +142,11 @@ const rootVars = `
   --buyer-chart-warning: ${themeColors.buyerChartWarning};
   --buyer-indicator-active: ${themeColors.buyerIndicatorActive};
   --buyer-indicator-inactive: ${themeColors.buyerIndicatorInactive};
+  --custom-index-deep: ${themeColors.customIndexDeepBlue};
+  --custom-index-light: ${themeColors.customIndexLightBlue};
+  --custom-index-mid: ${themeColors.customIndexMidBlue};
+  --custom-index-penalty: ${themeColors.customIndexPenalty};
+  --custom-index-panel: ${themeColors.customIndexPanelBg};
 }
 `
 
@@ -174,6 +184,7 @@ export default defineConfig({
     ['metric-unit', 'text-[14px] text-[var(--metric-accent)]'],
     ['manager-trigger', 'metric-link gap-[6px] text-[var(--manager-text)]'],
     ['level-pill', 'inline-flex items-center gap-[4px] rounded-full bg-white/10 px-[10px] py-[2px] text-[12px] uppercase tracking-[0.12em]'],
+    ['custom-index-section', 'bg-[var(--custom-index-panel)] text-[var(--custom-index-deep)] box-border'],
     [
       'todo-overview-shell',
       'flex w-full flex-shrink-0 items-center gap-[16px] rounded-[20px] border-[2px] border-[#ffffff] px-[24px] py-[24px] box-border',

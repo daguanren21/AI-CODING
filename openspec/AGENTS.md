@@ -92,10 +92,7 @@ After deployment, create separate PR to:
 
 ### EXECUTE Hook (Mandatory)
 
-- Before every response in `[MODE: EXECUTE]`,运行 `python3 ~/.codex/hooks/mode_hook.py --mode EXECUTE --change <id>`（必要时通过 `CODEX_MODE_HOOK` 指定自定义路径；若在仓库外执行需加 `--repo-root <path>`），并在回复开头复述脚本输出的至少两条关键约束（Git 工作流、测试标准等）。
 - 同样在 EXECUTE 回复开头，依据脚本输出提醒并询问用户当前 change 的 `openspec/changes/<change-id>/tasks.md` 是否仍有未完成条目：若脚本找到未勾选项，必须逐条点名；若脚本报告缺失或未知，立即向用户索要最新任务清单。
-- PLAN 模式建议同样运行脚本（`--mode PLAN`）以保持一致性。
-- 此 Hook 不改变 RESEARCH/PLAN/EXECUTE 的切换规则；它只是在进入 EXECUTE/PLAN 模式时的固定步骤，除非用户显式书面豁免。
 
 ### Search Guidance
 
@@ -194,6 +191,7 @@ New request?
 
 - Affected specs: [list capabilities]
 - Affected code: [key files/systems]
+
 ```
 
 3. **Create spec deltas:** `specs/[capability]/spec.md`
@@ -222,6 +220,7 @@ The system SHALL provide...
 
 **Reason**: [Why removing]
 **Migration**: [How to handle]
+
 ```
 
 If multiple capabilities are affected, create multiple delta files under `changes/[change-id]/specs/<capability>/spec.md`—one per capability.
@@ -235,6 +234,7 @@ If multiple capabilities are affected, create multiple delta files under `change
 - [ ] 1.2 Implement API endpoint
 - [ ] 1.3 Add frontend component
 - [ ] 1.4 Write tests
+
 ```
 
 5. **Create design.md when needed:**
@@ -273,6 +273,7 @@ Minimal `design.md` skeleton:
 ## Open Questions
 
 - [...]
+
 ```
 
 ## Spec File Format
@@ -286,6 +287,7 @@ Minimal `design.md` skeleton:
 
 - **WHEN** valid credentials provided
 - **THEN** return JWT token
+
 ```
 
 **WRONG** (don't use bullets or bold):
@@ -295,6 +297,7 @@ Minimal `design.md` skeleton:
   **Scenario**: User login ❌
 
 ### Scenario: User login ❌
+
 ```
 
 Every requirement MUST have at least one scenario.
@@ -334,6 +337,7 @@ Example for RENAMED:
 
 - FROM: `### Requirement: Login`
 - TO: `### Requirement: User Authentication`
+
 ```
 
 ## Troubleshooting
@@ -420,6 +424,7 @@ auth/spec.md
 ### Requirement: Two-Factor Authentication
 
 ...
+
 ```
 
 notifications/spec.md
@@ -430,6 +435,7 @@ notifications/spec.md
 ### Requirement: OTP Email Notification
 
 ...
+
 ```
 
 ## Best Practices

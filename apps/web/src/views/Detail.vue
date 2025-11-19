@@ -119,7 +119,7 @@ const qtyDiffExpenses = ref([
 ])
 
 // 产品明细表格行合并方法
-const productSpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
+const productSpanMethod = ({ row, columnIndex }: any) => {
   // 需要合并的列：
   // 0: 产品ID/产品名
   // 1: SKU

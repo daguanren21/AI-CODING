@@ -3,8 +3,17 @@ import { computed } from 'vue'
 import type { MetricCardData } from './types'
 
 const props = defineProps<{ card: MetricCardData }>()
+const emit = defineEmits<{
+  (e: 'open-custom-index'): void
+}>()
 
 const showUnit = computed(() => Boolean(props.card.unit))
+
+const handleTrigger = () => {
+  if (props.card.id === 'custom-index') {
+    emit('open-custom-index')
+  }
+}
 </script>
 
 <template>
@@ -13,6 +22,9 @@ const showUnit = computed(() => Boolean(props.card.unit))
     class="metric-link"
     :data-testid="`metric-card-${props.card.id}`"
     :aria-label="`${props.card.label} ${props.card.value}${props.card.unit ? ` ${props.card.unit}` : ''}`"
+    @click="handleTrigger"
+    @keydown.enter.prevent="handleTrigger"
+    @keydown.space.prevent="handleTrigger"
   >
     <span class="text-[var(--base-info-text)] text-[14px] mr-[4px]">{{ card.label }}:</span>
     <span class="metric-content">

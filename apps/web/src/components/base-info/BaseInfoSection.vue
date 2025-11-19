@@ -2,6 +2,7 @@
 import { computed, onMounted } from 'vue'
 import BaseInfoMetricCard from './BaseInfoMetricCard.vue'
 import BaseInfoManagerCard from './BaseInfoManagerCard.vue'
+import CustomIndexDialog from './dialogs/CustomIndexDialog.vue'
 import { useBaseInfoStore } from '../../stores/baseInfoStore'
 
 const baseInfoStore = useBaseInfoStore()
@@ -30,7 +31,7 @@ const state = computed(() => baseInfoStore.baseInfo)
           <span class="text-[var(--base-info-text)]">{{ state.user.id }}</span>
         </div>
         <span class="info-divider" aria-hidden="true" />
-        <BaseInfoMetricCard :card="state.customIndex" />
+        <BaseInfoMetricCard :card="state.customIndex" @open-custom-index="baseInfoStore.openCustomIndexDialog" />
         <span class="info-divider" aria-hidden="true" />
         <BaseInfoMetricCard :card="state.beans" />
         <span class="info-divider" aria-hidden="true" />
@@ -40,5 +41,14 @@ const state = computed(() => baseInfoStore.baseInfo)
     <p v-if="baseInfoStore.error" class="mt-[8px] text-[14px] text-red-500">
       {{ baseInfoStore.error }}
     </p>
+    <CustomIndexDialog
+      :visible="baseInfoStore.isCustomIndexDialogOpen"
+      :loading="baseInfoStore.detailLoading"
+      :detail="baseInfoStore.customIndexDetail || undefined"
+      :penalties="baseInfoStore.customIndexPenalties"
+      :suggestions="baseInfoStore.customIndexSuggestions"
+      :error="baseInfoStore.detailError"
+      @close="baseInfoStore.closeCustomIndexDialog"
+    />
   </section>
 </template>

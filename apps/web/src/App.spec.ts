@@ -3,6 +3,7 @@ import { h, type Slots } from 'vue'
 import { mount } from '@vue/test-utils'
 import ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
+import type { Plugin } from 'vue'
 import App from './App.vue'
 import { themeColors } from './theme/colors'
 
@@ -58,7 +59,7 @@ beforeAll(() => {
 const mountApp = () => {
   const wrapper = mount(App, {
     global: {
-      plugins: [createPinia(), ElementPlus],
+      plugins: [createPinia() as unknown as Plugin, ElementPlus as unknown as Plugin],
     },
     attachTo: document.body,
   })

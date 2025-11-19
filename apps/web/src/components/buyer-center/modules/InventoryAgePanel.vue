@@ -73,7 +73,9 @@ const colorByStyle = (style: InventoryAgeStyleValue) => {
 
 const renderChart = () => {
   if (!chart || !props.data) return
-  const maxTick = props.ticks.at(-1) ?? props.data.max_qty ?? 0
+  const maxTick = props.ticks.length
+    ? props.ticks[props.ticks.length - 1]!
+    : props.data.max_qty ?? 0
   const option: echarts.EChartsOption = {
     grid: { left: 120, right: 56, top: 24, bottom: 24 },
     tooltip: { show: false },
@@ -111,7 +113,7 @@ const renderChart = () => {
           show: true,
           position: 'right',
           formatter: (params: any) => `${formatter.format(params.data.qty)}\n${params.data.proportion}`,
-          color: (params: any) => colorByStyle(params.data.style as InventoryAgeStyleValue),
+          color: '#303133',
           fontSize: 12,
           lineHeight: 16,
         },

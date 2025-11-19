@@ -1,33 +1,32 @@
 <template>
   <BuyerCard title="做任务，领云仓豆!" :link-url="linkUrl ?? undefined">
-    <BuyerCarousel :items="chunkedItems" :autoplay-delay="null" :loop="false">
+    <BuyerCarousel :items="items" :autoplay-delay="null" :loop="false">
       <template #default="{ item }">
         <div class="task-list">
           <article
-            v-for="task in item"
-            :key="task.id ?? task.title"
+            :key="item.id ?? item.title"
             class="task-row"
-            :data-state="task.state"
+            :data-state="item.state"
           >
             <div class="task-row__icon">
-              <img v-if="task.imageUrl" :src="task.imageUrl" :alt="task.title" />
+              <img v-if="item.imageUrl" :src="item.imageUrl" :alt="item.title" />
               <i v-else class="i-ep-medal" aria-hidden="true"></i>
             </div>
             <div class="task-row__body">
-              <p class="task-row__title">{{ task.title }}</p>
-              <p v-if="task.description" class="task-row__desc">{{ task.description }}</p>
-              <p v-if="task.rewardDelta" class="task-row__reward">
-                {{ task.rewardText ?? '奖励' }} <strong>{{ task.rewardDelta }}</strong>
+              <p class="task-row__title">{{ item.title }}</p>
+              <p v-if="item.description" class="task-row__desc">{{ item.description }}</p>
+              <p v-if="item.rewardDelta" class="task-row__reward">
+                {{ item.rewardText ?? '奖励' }} <strong>{{ item.rewardDelta }}</strong>
               </p>
             </div>
             <ElButton
               class="task-row__action"
               size="small"
-              :type="task.state === 'expired' ? 'info' : 'success'"
+              :type="item.state === 'expired' ? 'info' : 'success'"
               plain
               round
             >
-              {{ task.buttonText ?? (task.state === 'expired' ? '已过期' : '领取奖励') }}
+              {{ item.buttonText ?? (item.state === 'expired' ? '已过期' : '领取奖励') }}
             </ElButton>
           </article>
         </div>
@@ -59,13 +58,7 @@ const props = withDefaults(
   },
 )
 
-const chunkedItems = computed(() => {
-  const grouped: ICarouselItem[][] = []
-  for (let i = 0; i < props.items.length; i += 2) {
-    grouped.push(props.items.slice(i, i + 2))
-  }
-  return grouped.length ? grouped : [[]]
-})
+const items = computed(() => props.items)
 </script>
 
 <style scoped>

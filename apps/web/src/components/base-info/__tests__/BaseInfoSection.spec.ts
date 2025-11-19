@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
+import type { Plugin } from 'vue'
 import BaseInfoSection from '../BaseInfoSection.vue'
 import { useBaseInfoStore } from '../../../stores/baseInfoStore'
 
@@ -17,7 +18,7 @@ describe('BaseInfoSection', () => {
     const wrapper = mount(BaseInfoSection, {
       attachTo: document.body,
       global: {
-        plugins: [createPinia(), ElementPlus],
+        plugins: [createPinia() as unknown as Plugin, ElementPlus as unknown as Plugin],
       },
     })
     cleanupWrappers.push(() => wrapper.unmount())
@@ -27,7 +28,7 @@ describe('BaseInfoSection', () => {
   it('renders greeting, custom index, and beans data from mock state', () => {
     const wrapper = mountComponent()
     expect(wrapper.text()).toContain('Hi, Alice Zhang')
-    expect(wrapper.text()).toContain('Lv.5 路 custom Pro')
+    expect(wrapper.text()).toContain('Lv.5 Custom Pro')
     expect(wrapper.text()).toContain('ID:345879-0209')
     expect(wrapper.get('[data-testid="metric-card-custom-index"]').text()).toContain('95.6')
     expect(wrapper.get('[data-testid="metric-card-beans"]').text()).toContain('1550')
